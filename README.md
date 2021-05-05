@@ -1,19 +1,21 @@
-<style>
-span{color:blue !important;}
-H2{color:DarkOrange !important;}
-p{color:Black !important;}
-</style>
+<style>#game-title1{color:#261E1C;}</style>
+<style>#game-title2{color:#CC613B;}</style>
+<style>#author-title1{color:#EE811E;}</style>
+<style>#author-title2{color:#B90000;}</style>
+<style>#author-title3{color:#359B2C;}</style>
+<style>.code-commands{color:red;}</style>
+<style>#center-div{display: block; margin-left: auto; margin-right: auto;}</style>
 
-# :video_game: <span style="color: #261E1C;">SLATE!</span> <span style="color: #CC613B;">Sliders</span>
+# :video_game: <span id="game-title1">SLATE!</span> <span id="game-title2">Sliders</span>
 
-### Authors: <span style="color: #EE811E;">Justin Hylton</span>, <span style="color: #B90000;">Renae St Louis</span> and <span style="color: #359B2C;">Richard Lawrence</span>
+### Authors: <span id="author-title1">Justin Hylton</span>, <span id="author-title2">Renae St Louis</span> and <span id="author-title3">Richard Lawrence</span>
 
 ## Description
 A sliding pattern matching game coded in Ruby.  Using the Ruby 2d library.
 
 ## Screenshots
 
-<div style="display: block; margin-left: auto; margin-right: auto;">
+<div id="center-div">
 
 ![](images/screenshot.png)
 
@@ -28,13 +30,13 @@ A sliding pattern matching game coded in Ruby.  Using the Ruby 2d library.
 
 **To install it, run**
 
-* <span>$ gem ****</span>
+* <span class="code-commands">$ gem ****</span>
 
 ## Starting the game
 
 **Running in 800x600 window mode**
 
-* <span>$ ruby speed_tiles</span>
+* <span class="code-commands">$ ruby speed_tiles</span>
 
 ## Controls
 
