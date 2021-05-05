@@ -1,6 +1,6 @@
 # :video_game: <span style="color: #261E1C;">SLATE!</span> <span style="color: #CC613B;">Sliders</span>
 
-###Authors: <span style="color: #EE811E;">Justin Hylton</span>, <span style="color: #B90000;">Renae St Louis</span> and <span style="color: #359B2C;">Richard Lawrence</span>
+### Authors: <span style="color: #EE811E;">Justin Hylton</span>, <span style="color: #B90000;">Renae St Louis</span> and <span style="color: #359B2C;">Richard Lawrence</span>
 
 ## Description
 A sliding pattern matching game coded in Ruby.  Using the Ruby 2d library.
@@ -30,7 +30,7 @@ A sliding pattern matching game coded in Ruby.  Using the Ruby 2d library.
 
 * <span style="color: red;">$ ruby speed_tiles</span>
 
-##Controls
+## Controls
 
 * Movement - Mouse clicks or arrow keys
 * End - (q)
