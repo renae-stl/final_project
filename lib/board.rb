@@ -1,0 +1,41 @@
+require_relative 'tile'
+class Board
+    def initialize(size, tiles)
+        #@size = 5
+        @tiles = [
+            Tile.new(0,0, red),
+            Tile.new(0,1, blue),
+            Tile.new(0,2, blue),
+            Tile.new(0,3, yellow),
+            Tile.new(1,0, green),
+            Tile.new(1,1, blue),
+            Tile.new(1,2, green),
+            Tile.new(1,3, red),
+            Tile.new(2,0, blue),
+            Tile.new(2,1, green),
+            Tile.new(2,2, yellow),
+            Tile.new(2,3, green),
+            Tile.new(3,0, red),
+            Tile.new(3,1, red),
+            Tile.new(3,2, red),
+            Tile.new(3,3, blue),
+            #Tile.new(0,0, blue),
+            #Tile.new(0,0, blue),
+            #Tile.new(0,0, blue),
+            #Tile.new(0,0, blue),
+            #Tile.new(0,0, blue),
+            #Tile.new(0,0, blue),
+            #Tile.new(0,0, blue),
+            #Tile.new(0,0, blue),
+            #Tile.new(0,0, blue)
+        ]
+    
+    end
+
+    def show_board()
+        puts @tiles
+    end
+
+    def
+
+end
