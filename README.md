@@ -1,5 +1,5 @@
-<!--<style>#game-title1{color:#261E1C;}</style>
-<style>#game-title2{color:#CC613B;}</style>
+<!--<style>#classes-title1{color:#261E1C;}</style>
+<style>#classes-title2{color:#CC613B;}</style>
 <style>#author-title1{color:#EE811E;}</style>
 <style>#author-title2{color:#B90000;}</style>
 <style>#author-title3{color:#359B2C;}</style>
@@ -16,7 +16,7 @@ A sliding pattern matching game coded in Ruby.  Using the Ruby 2d library.
 
 <div align="center">
 
-![](images/screenshot.png)
+![](resources/github/screenshots.png)
 
 </div>
 
@@ -35,7 +35,7 @@ A sliding pattern matching game coded in Ruby.  Using the Ruby 2d library.
 
 **Running in 800x600 window mode**
 
-* <span class="code-commands">$ ruby speed_tiles</span>
+* <span class="code-commands">$ ruby speed_slates</span>
 
 ## Controls
 
