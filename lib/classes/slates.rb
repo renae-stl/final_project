@@ -4,9 +4,5 @@ class Slates
     @row = row
     @column = column
   end
-
-  def slate_print()
-    puts 'Slates'
-  end
-
+  
 end
