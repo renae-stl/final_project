@@ -1,7 +1,8 @@
 class Slates
 
-  def initialize
-    @board = 4
+  def initialize(row, column)
+    @row = row
+    @column = column
   end
 
   def slate_print()
