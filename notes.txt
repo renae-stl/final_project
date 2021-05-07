@@ -1,0 +1,35 @@
+Slate! Sliders Todos
+
+MVP ENGINE EPICS v1.0 (IRB Version)
+- I can generate a target pattern
+- I can select a slate and move it to another position
+- I know whether I can move a slate to a desired position or not
+- I can retrieve the state of all slates and know whether it's the correct pattern
+
+- [ ] Create board
+    - [ ]
+- [ ]
+- [ ]
+
+
+
+# Problems
+
+1. We want to make sure that the randomly generated board contains the pattern solution
+2. How to map hashes to another hash based on a pattern.
+
+
+
+# Code Snippets
+
+board.board_print()
+target_board.target_board_print()
+slates.slate_print()
+
+board = [
+  [rand(1..6),rand(1..6),rand(1..6),rand(1..6),rand(1..6)],
+  [rand(1..6),rand(1..6),rand(1..6),rand(1..6),rand(1..6)],
+  [rand(1..6),rand(1..6),0,rand(1..6),rand(1..6)],
+  [rand(1..6),rand(1..6),rand(1..6),rand(1..6),rand(1..6)],
+  [rand(1..6),rand(1..6),rand(1..6),rand(1..6),rand(1..6)]
+]
