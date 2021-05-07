@@ -1,7 +1,6 @@
 require 'matrix'
 
 require_relative 'classes/board'
-require_relative 'classes/target_board'
 require_relative 'classes/slates'
 
 # board = Board.new
@@ -172,3 +171,18 @@ puts "Current game state: #{START_GAME_STATE[2][2]}"
 hash = {}
 9.times { |n| hash[n] = rand(1..6) }
 p hash
+
+def create_board(row_index, column_index)
+  size = 5
+  board = Array.new(size)
+  size.times do |column_index|
+    board[column_index] = Array.new(size)
+    size.times do |row_index|
+      board[column_index][row_index] =  Slates.new(row_index, column_index)
+    end
+  end
+  p board
+  p board.length
+end
+
+create_board(5, 5)
