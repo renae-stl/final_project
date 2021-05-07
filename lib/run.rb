@@ -168,3 +168,7 @@ START_GAME_STATE = {
 }
 
 puts "Current game state: #{START_GAME_STATE[2][2]}"
+
+hash = {}
+9.times { |n| hash[n] = rand(1..6) }
+p hash
