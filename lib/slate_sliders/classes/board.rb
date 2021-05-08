@@ -26,8 +26,20 @@ class Board
 
   def target_pattern
     constant = @board
-    puts "target pattern\n\n"
-    constant
+
+    random_slate = [constant[0][0], constant[0][1], constant[0][2], constant[0][3], constant[0][4],
+                    constant[1][0],                                                 constant[1][4],
+                    constant[2][0],                                                 constant[2][4],
+                    constant[3][0],                                                 constant[3][4],
+                    constant[4][0], constant[4][1], constant[4][2], constant[4][3], constant[4][4],
+                   ]
+    
+    
+    target = [[constant[1][1], constant[1][2], constant[1][3]],
+              [constant[2][1], random_slate.sample,   constant[2][3]],
+              [constant[3][1], constant[3][2], constant[3][3]],
+             ]
+    target.shuffle!
   end
 
   # target_pattern - which will solve the puzzle
