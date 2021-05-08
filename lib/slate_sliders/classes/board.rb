@@ -1,7 +1,7 @@
 class Board
 
   def initialize
-    @size = 3
+    @size = 5
   end
 
   def start_screen
@@ -13,19 +13,28 @@ class Board
     puts
   end
 
-  def create_board
-    board = Array.new(@size)
+  def slates
+    @board = Array.new(@size)
     @size.times do |column_index|
-      board[column_index] = Array.new(@size)
+      @board[column_index] = Array.new(@size)
       @size.times do |row_index|
-        board[column_index][row_index] = Slates.new(row_index, column_index)
+        @board[column_index][row_index] = Slates.new(row_index, column_index)
       end
     end
-    board
+    @board
   end
 
+  def target_pattern
+    constant = @board
+    puts "target pattern\n\n"
+    constant
+  end
+
+  # target_pattern - which will solve the puzzle
+  # initial_board_pattern
+  # current_board_pattern
   def print_board
-    nil
+
   end
 
   def timer
