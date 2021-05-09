@@ -72,3 +72,9 @@ board = [
 #   [4,2,0,4,6]
 #   [1,4,6,5,4]
 #   [4,3,4,1,4]
+
+///////////////////////////////////////////////////////////
+
+# target_pattern which is the puzzle to solve
+# start_up_board_pattern
+# current_board_pattern

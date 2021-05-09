@@ -1,16 +1,13 @@
 class Slates
 
   def initialize(x, y)
-
     index_positions={}
     @x = index_positions[:x] || x
     @y = index_positions[:y] || y
     @colour = colours
-
   end
   
   def colours
-
     board_colours = {
       1 => "Gre", 2 => "Red", 3 => "Blu",
       4 => "Ora", 5 => "Yel", 6 => "Whi"

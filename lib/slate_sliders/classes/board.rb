@@ -13,7 +13,7 @@ class Board
     puts
   end
 
-  def slates
+  def startup_all_slates
     @board = Array.new(@size)
     @size.times do |column_index|
       @board[column_index] = Array.new(@size)
@@ -24,27 +24,33 @@ class Board
     @board
   end
 
-  def target_pattern
-    constant = @board
+  # def startup_inner_slates
+  #   slate = @board
+  #
+  #   @startup_inner_slates =  [[slate[1][1], slate[1][2], slate[1][3]],
+  #                             [slate[2][1], slate[2][2], slate[2][3]],
+  #                             [slate[3][1], slate[3][2], slate[3][3]],
+  #   ]
+  # end
 
-    random_slate = [constant[0][0], constant[0][1], constant[0][2], constant[0][3], constant[0][4],
-                    constant[1][0],                                                 constant[1][4],
-                    constant[2][0],                                                 constant[2][4],
-                    constant[3][0],                                                 constant[3][4],
-                    constant[4][0], constant[4][1], constant[4][2], constant[4][3], constant[4][4],
-                   ]
-    
-    
-    target = [[constant[1][1], constant[1][2], constant[1][3]],
-              [constant[2][1], random_slate.sample,   constant[2][3]],
-              [constant[3][1], constant[3][2], constant[3][3]],
-             ]
-    target.shuffle!
+  def target_pattern
+    slate = @board
+
+    outer_slates = [slate[0][0], slate[0][1], slate[0][2], slate[0][3], slate[0][4],
+                    slate[1][0],                                        slate[1][4],
+                    slate[2][0],                                        slate[2][4],
+                    slate[3][0],                                        slate[3][4],
+                    slate[4][0], slate[4][1], slate[4][2], slate[4][3], slate[4][4],
+    ]
+
+    target_pattern = [[slate[1][1], slate[1][2], slate[1][3]],
+                      [slate[2][1], outer_slates.sample, slate[2][3]],
+                      [slate[3][1], slate[3][2], slate[3][3]],
+    ]
+
+    target_pattern.shuffle! # target pattern is shuffled
   end
 
-  # target_pattern - which will solve the puzzle
-  # initial_board_pattern
-  # current_board_pattern
   def print_board
 
   end
