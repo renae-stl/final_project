@@ -46,7 +46,7 @@ board = [
 ///////////////////////////////////////////////////////////
 
 # 3X3 matrix
-#       0 1 2
+#         0     1     2
 #    0 [(0,0),(0,1),(0,2)]
 #    1 [(1,0),(1,1),(1,2)]
 #    2 [(2,0),(2,1),(2,2)]
@@ -59,7 +59,7 @@ board = [
 ///////////////////////////////////////////////////////////
 
 # 5X5 matrix
-#       0 1 2 3 4
+#         0     1     2     3     4
 #    0 [(0,0),(0,1),(0,2),(0,3),(0,4)]
 #    1 [(1,0),(1,1),(1,2),(1,3),(1,4)]
 #    2 [(2,0),(2,1),(2,2),(2,3),(2,4)]
@@ -115,3 +115,18 @@ end
 # @board.each_with_index do |column_index, row_index|
 #   #column_index.each { |object| puts " #{row_index} [ #{object.instance_variable_get(:@colour).slice(0..2)} ] " }
 # end
+
+///////////////////////////////////////////////////////////
+
+puts
+puts "** Print Startup Inner Slates **\n\n"
+slate_sliders.print_inner_board(slate_sliders.startup_inner_slates)
+
+  def startup_inner_slates
+    slate = @print_board_2d
+
+    @startup_inner_slates =  [[slate[1][1], slate[1][2], slate[1][3]],
+                              [slate[2][1], slate[2][2], slate[2][3]],
+                              [slate[3][1], slate[3][2], slate[3][3]],
+    ]
+  end

@@ -42,15 +42,6 @@ class Board
     end
   end
 
-  def startup_inner_slates
-    slate = @print_board_2d
-
-    @startup_inner_slates =  [[slate[1][1], slate[1][2], slate[1][3]],
-                              [slate[2][1], slate[2][2], slate[2][3]],
-                              [slate[3][1], slate[3][2], slate[3][3]],
-    ]
-  end
-
   def target_pattern
     slate = @print_board_2d
 
