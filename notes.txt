@@ -78,3 +78,40 @@ board = [
 # target_pattern which is the puzzle to solve
 # start_up_board_pattern
 # current_board_pattern
+
+///////////////////////////////////////////////////////////
+
+# puts "\n\nStartup Inner Slates\n\n"
+# pp slate_sliders.startup_inner_slates
+# puts "\n\nTarget Pattern\n\n"
+
+///////////////////////////////////////////////////////////
+
+# print_board_size = @size + 1
+#
+# @board = Array.new(print_board_size)
+# print_board_size.times do |column_index|
+#   @board[column_index] = Array.new(print_board_size)
+#   print_board_size.times do |row_index|
+#     @board[column_index][row_index] = Slates.new(row_index, column_index).colour
+#   end
+# end
+# @board
+# (0..4).each { |column_index|
+#   print "outer:"
+#   (0..4).each { |row_index|
+#     "inner: #{@board[column_index][row_index]} [#{row_index}] "
+#   }
+#   puts "\n"
+# }
+for row_index,column_index in 0..4
+  puts @board[0][0].colour
+  puts " #{column_index} #{row_index} "
+end
+
+///////////////////////////////////////////////////////////
+
+# pp @print_board
+# @board.each_with_index do |column_index, row_index|
+#   #column_index.each { |object| puts " #{row_index} [ #{object.instance_variable_get(:@colour).slice(0..2)} ] " }
+# end
