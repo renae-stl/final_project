@@ -1,30 +1,39 @@
 Slate! Sliders Todos
 
+# Problems
+
+1. We want to make sure that the randomly generated game board contains the pattern solution
+
+///////////////////////////////////////////////////////////
+
 MVP ENGINE EPICS v1.0 (IRB Version)
 - I can generate a target pattern
 - I can select a slate and move it to another position
 - I know whether I can move a slate to a desired position or not
 - I can retrieve the state of all slates and know whether it's the correct pattern
 
-- [ ] Create board
+///////////////////////////////////////////////////////////
+
+- [ ] Create 3x3 board
     - [ ]
+- [ ] Print board
 - [ ]
-- [ ]
 
+///////////////////////////////////////////////////////////
 
+# Key Features
+1.  What will be on the start screen?
+2.  What will be on the end screen?
 
-# Problems
+///////////////////////////////////////////////////////////
 
-1. We want to make sure that the randomly generated board contains the pattern solution
-2. How to map hashes to another hash based on a pattern.
-
-
+# Additional Features
+1. Timer
+2. Timer slider
 
 # Code Snippets
 
-board.board_print()
-target_board.target_board_print()
-slates.slate_print()
+///////////////////////////////////////////////////////////
 
 board = [
   [rand(1..6),rand(1..6),rand(1..6),rand(1..6),rand(1..6)],
@@ -34,7 +43,7 @@ board = [
   [rand(1..6),rand(1..6),rand(1..6),rand(1..6),rand(1..6)]
 ]
 
-# Ryan's hash idea
+///////////////////////////////////////////////////////////
 
 # 3X3 matrix
 #       0 1 2
@@ -47,6 +56,7 @@ board = [
 #   [5,5,6]
 #   [4,3,5]
 
+///////////////////////////////////////////////////////////
 
 # 5X5 matrix
 #       0 1 2 3 4
@@ -62,3 +72,46 @@ board = [
 #   [4,2,0,4,6]
 #   [1,4,6,5,4]
 #   [4,3,4,1,4]
+
+///////////////////////////////////////////////////////////
+
+# target_pattern which is the puzzle to solve
+# start_up_board_pattern
+# current_board_pattern
+
+///////////////////////////////////////////////////////////
+
+# puts "\n\nStartup Inner Slates\n\n"
+# pp slate_sliders.startup_inner_slates
+# puts "\n\nTarget Pattern\n\n"
+
+///////////////////////////////////////////////////////////
+
+# print_board_size = @size + 1
+#
+# @board = Array.new(print_board_size)
+# print_board_size.times do |column_index|
+#   @board[column_index] = Array.new(print_board_size)
+#   print_board_size.times do |row_index|
+#     @board[column_index][row_index] = Slates.new(row_index, column_index).colour
+#   end
+# end
+# @board
+# (0..4).each { |column_index|
+#   print "outer:"
+#   (0..4).each { |row_index|
+#     "inner: #{@board[column_index][row_index]} [#{row_index}] "
+#   }
+#   puts "\n"
+# }
+for row_index,column_index in 0..4
+  puts @board[0][0].colour
+  puts " #{column_index} #{row_index} "
+end
+
+///////////////////////////////////////////////////////////
+
+# pp @print_board
+# @board.each_with_index do |column_index, row_index|
+#   #column_index.each { |object| puts " #{row_index} [ #{object.instance_variable_get(:@colour).slice(0..2)} ] " }
+# end
