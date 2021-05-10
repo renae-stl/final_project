@@ -2,6 +2,7 @@
 
 require_relative 'classes/board'
 require_relative 'classes/slates'
+require_relative 'classes/stopwatch'
 
 slate_sliders = Board.new
 

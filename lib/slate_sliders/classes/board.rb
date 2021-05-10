@@ -2,6 +2,8 @@ class Board
 
   #attr_reader :board
 
+  
+
   def initialize
     @size = 5
   end
@@ -76,5 +78,5 @@ class Board
   def timer_slider
     nil
   end
-  
+
 end
