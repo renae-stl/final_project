@@ -7,7 +7,7 @@ slate_sliders = Board.new
 
 slate_sliders.start_screen
 puts
-puts "* Startup All Slates **\n\n"
+puts "** Startup All Slates **\n\n"
 pp slate_sliders.startup_all_slates
 puts
 puts "** Print Board **\n\n"
