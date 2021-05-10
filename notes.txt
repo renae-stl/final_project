@@ -1,4 +1,12 @@
-Slate! Sliders Todos
+Slate! Sliders Notes
+
+***********************************************************
+///////////////////////////////////////////////////////////
+
+# General Game Notes
+
+///////////////////////////////////////////////////////////
+***********************************************************
 
 # Problems
 
@@ -6,7 +14,8 @@ Slate! Sliders Todos
 
 ///////////////////////////////////////////////////////////
 
-MVP ENGINE EPICS v1.0 (IRB Version)
+# MVP ENGINE EPICS v1.0 (IRB Version)
+
 - I can generate a target pattern
 - I can select a slate and move it to another position
 - I know whether I can move a slate to a desired position or not
@@ -14,36 +23,51 @@ MVP ENGINE EPICS v1.0 (IRB Version)
 
 ///////////////////////////////////////////////////////////
 
-- [ ] Create 3x3 board
+# Slate! Sliders Todos
+
+- [x] Create 5x5 startup board
+- [x] Create target pattern
+- [x] Print board
+- [ ] Game movement
+- [ ] Timer
+    - [ ] Timer Slider
+- [ ] Ruby 2d
     - [ ]
-- [ ] Print board
-- [ ]
+- [ ] Testing
+    - [ ]
+    - [ ]
+    - [ ]
 
 ///////////////////////////////////////////////////////////
 
 # Key Features
+
 1.  What will be on the start screen?
 2.  What will be on the end screen?
 
 ///////////////////////////////////////////////////////////
 
-# Additional Features
+# Nice To Have Features
+
 1. Timer
 2. Timer slider
 
-# Code Snippets
-
 ///////////////////////////////////////////////////////////
 
-board = [
-  [rand(1..6),rand(1..6),rand(1..6),rand(1..6),rand(1..6)],
-  [rand(1..6),rand(1..6),rand(1..6),rand(1..6),rand(1..6)],
-  [rand(1..6),rand(1..6),0,rand(1..6),rand(1..6)],
-  [rand(1..6),rand(1..6),rand(1..6),rand(1..6),rand(1..6)],
-  [rand(1..6),rand(1..6),rand(1..6),rand(1..6),rand(1..6)]
-]
+# Methods We May Need
+
+# target_pattern (which is the puzzle to solve)
+# start_up_board_pattern
+# current_board_pattern
+
+
+***********************************************************
+///////////////////////////////////////////////////////////
+
+# Game Patterns
 
 ///////////////////////////////////////////////////////////
+***********************************************************
 
 # 3X3 matrix
 #         0     1     2
@@ -73,11 +97,22 @@ board = [
 #   [1,4,6,5,4]
 #   [4,3,4,1,4]
 
+
+***********************************************************
 ///////////////////////////////////////////////////////////
 
-# target_pattern which is the puzzle to solve
-# start_up_board_pattern
-# current_board_pattern
+# Old Code Snippets
+
+///////////////////////////////////////////////////////////
+***********************************************************
+
+board = [
+  [rand(1..6),rand(1..6),rand(1..6),rand(1..6),rand(1..6)],
+  [rand(1..6),rand(1..6),rand(1..6),rand(1..6),rand(1..6)],
+  [rand(1..6),rand(1..6),0,rand(1..6),rand(1..6)],
+  [rand(1..6),rand(1..6),rand(1..6),rand(1..6),rand(1..6)],
+  [rand(1..6),rand(1..6),rand(1..6),rand(1..6),rand(1..6)]
+]
 
 ///////////////////////////////////////////////////////////
 
