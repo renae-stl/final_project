@@ -1,4 +1,4 @@
-class Stopwatch
+class Timer
 
   def initialize()
     @start = Time.now
@@ -13,7 +13,7 @@ class Stopwatch
 
 end
 
-  s = Stopwatch.new
+  s = Timer.new
 sleep(2)
 puts s.elapsed_time
 

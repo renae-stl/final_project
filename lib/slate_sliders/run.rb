@@ -2,7 +2,7 @@
 
 require_relative 'classes/board'
 require_relative 'classes/slates'
-
+require_relative 'classes/timer'
 slate_sliders = Board.new
 
 slate_sliders.start_screen
