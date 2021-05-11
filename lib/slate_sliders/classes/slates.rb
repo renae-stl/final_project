@@ -39,4 +39,8 @@ class Slates
     raise "Invalid Index!"
   end
 
+  def to_string 
+    "[ #{@colour.slice(0,3)} ]"
+  end
+
 end

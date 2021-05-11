@@ -1,3 +1,4 @@
+require_relative 'slates'
 class Board
 
   #attr_reader :board
@@ -32,23 +33,49 @@ class Board
     board
   end
 
-  # def print_board
-  #   output = "      0      1      2      3      4"
-  #   @slates.each.with_index do |row, index|
-  #     output += "\n #{index} "
-  #     row.each do |slate|
-  #       output += slate.to_string
-  #     end
-  #   end
-  #
-  #   puts output
-  #
-  #   return
-  # end
+  def print_board
+    output = "      0      1      2      3      4"
+    @board.each.with_index do |row, index|
+      output += "\n #{index} "
+      row.each do |slate|
+        output += slate.to_string
+      end
+    end
   
-  # def target_pattern
-  #   nil
-  # end
+    puts output
+  
+    return
+  end
+  
+  def target_pattern
+    output = "      0      1      2      3      4"
+    @inner_slates.each.with_index do |row, index|
+      output += "\n #{index} "
+      row.each do |slate|
+        output += slate.to_string
+      end
+    end
+  
+    puts output
+  
+    return
+  end
+
+
+  def truncate_edges
+    # Remove outer edges of the tiles
+    # Remove anything where y = 0, x = 0, y = 4, x = 4
+    
+    clone = Marshal.load( Marshal.dump(@board) ) 
+    @inner_slates = clone.each do |r|
+      desired_slates = r.select {|s| !(s.x == 0 || s.x == 4 || s.y == 0 || s.y == 4) }
+      p desired_slates
+    end
+
+    return @inner_slates
+ # map my array so that these values are filtered
+  end
+ 
 
   def timer
     max_time_min = 2 # time in minutes
