@@ -2,6 +2,8 @@ class Board
 
   #attr_reader :board
 
+  
+
   def initialize
     @size = 5
     @board = startup_all_slates
@@ -62,5 +64,5 @@ class Board
 
     end
   end
-  
+
 end
