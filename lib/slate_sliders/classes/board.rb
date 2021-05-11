@@ -18,31 +18,31 @@ class Board
   end
 
   def startup_all_slates
-    @board = Array.new(@size)
+    board = Array.new(@size)
 
     @size.times do |column_index|
-      @board[column_index] = Array.new(@size)
+      board[column_index] = Array.new(@size)
       @size.times do |row_index|
-        @board[column_index][row_index] = Slates.new(row_index, column_index)
+        board[column_index][row_index] = Slates.new(row_index, column_index)
       end
     end
 
-    @board
+    board
   end
 
-  def print_board
-    # output = "      0      1      2      3      4"
-    # @slates.each.with_index do |row, index|
-    #   output += "\n #{index} "
-    #   row.each do |slate|
-    #     output += slate.to_string
-    #   end
-    # end
-    #
-    # puts output
-    #
-    # return
-  end
+  # def print_board
+  #   output = "      0      1      2      3      4"
+  #   @slates.each.with_index do |row, index|
+  #     output += "\n #{index} "
+  #     row.each do |slate|
+  #       output += slate.to_string
+  #     end
+  #   end
+  #
+  #   puts output
+  #
+  #   return
+  # end
   
   # def target_pattern
   #   nil
