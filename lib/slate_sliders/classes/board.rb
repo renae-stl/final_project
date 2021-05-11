@@ -66,11 +66,12 @@ class Board
     # Remove outer edges of the tiles
     # Remove anything where y = 0, x = 0, y = 4, x = 4
     
-    clone = Marshal.load( Marshal.dump(@board) ) 
-    @inner_slates = clone.each do |r|
-      desired_slates = r.select {|s| !(s.x == 0 || s.x == 4 || s.y == 0 || s.y == 4) }
-      p desired_slates
+    @inner_slates = @board.map do |row|
+      row.select {|slate| !(slate.x == 0 || slate.x == 4 || slate.y == 0 || slate.y == 4) }
     end
+
+    # omit empty rows
+    @inner_slates = @inner_slates.reject { |row| row.empty? }
 
     return @inner_slates
  # map my array so that these values are filtered

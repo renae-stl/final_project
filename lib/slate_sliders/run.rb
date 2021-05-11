@@ -12,7 +12,7 @@ puts "** Startup All Slates **\n\n"
 pp slate_sliders.startup_all_slates
 puts
 puts "** Print Board **\n\n"
-#slate_sliders.print_board
+slate_sliders.print_board
 
 # puts
 # puts "** TARGET PATTERN **\n\n"
