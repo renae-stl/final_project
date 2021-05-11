@@ -52,7 +52,22 @@ Slate! Sliders Notes
 1. Timer
 2. Timer slider
 
+
+***********************************************************
 ///////////////////////////////////////////////////////////
+
+# Game Program
+
+///////////////////////////////////////////////////////////
+***********************************************************
+
+# Key parts of the game
+
+# Three board data structures:
+# 1. The 5x5 board game playing area.
+# 2. To represent the current game state of the 3x3 inner slates.
+# 3. To represent the target pattern (constant).
+# Once the current game state equals the target pattern then the player has won.
 
 # Methods We May Need
 
@@ -165,3 +180,17 @@ slate_sliders.print_inner_board(slate_sliders.startup_inner_slates)
                               [slate[3][1], slate[3][2], slate[3][3]],
     ]
   end
+
+///////////////////////////////////////////////////////////
+
+m = ARGV[0] || 2 # time in minutes
+e = Time.now + m.to_i*60
+
+while Time.now <= e
+sleep 1
+
+t = e - Time.now
+min, sec = t/60, t%60
+print "\b"*5
+printf "%02d:%02d", min, sec if t > 0
+end

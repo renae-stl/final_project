@@ -1,38 +1,42 @@
 class Slates
 
-  attr_accessor :x, :y, :colour
+  attr_accessor :x, :y
 
   def initialize(x, y)
-    index_positions={}
-    @x = index_positions[:x] || x
-    @y = index_positions[:y] || y
-    @colour = colour
+    @x = x
+    @y = y
+    @colour = get_startup_colour
   end
-  
-  def colour
-    board_colours = {
-      1 => "green", 2 => "red", 3 => "blue",
-      4 => "orange", 5 => "yellow", 6 => "white"
-    }
 
-    if @x == 2 && @y == 2
-      "blank"
-    else
-      case rand(1..6)
-      when 1
-        "#{board_colours[1]}"
-      when 2
-        "#{board_colours[2]}"
-      when 3
-        "#{board_colours[3]}"
-      when 4
-        "#{board_colours[4]}"
-      when 5
-        "#{board_colours[5]}"
-      when 6
-        "#{board_colours[6]}"
+  # the default starting pattern of the game
+  def get_startup_colour
+    if @y <= 1
+      if @x <= 1
+        return "red"
+      elsif @x == 2
+        return "yellow"
+      elsif @x >= 3
+        return "blue"
+      end
+    elsif @y == 2
+      if @x <= 1
+        return "white"
+      elsif @x == 2
+        return "blank"
+      elsif @x >= 3
+        return "white"
+      end
+    elsif @y >= 3
+      if @x <= 1
+        return "orange"
+      elsif @x == 2
+        return "yellow"
+      elsif @x >= 3
+        return "green"
       end
     end
+
+    raise "Invalid Index!"
   end
 
 end
