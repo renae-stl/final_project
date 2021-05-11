@@ -67,11 +67,8 @@ class Board
     # Remove anything where y = 0, x = 0, y = 4, x = 4
     
     @inner_slates = @board.map do |row|
-      row.select {|slate| !(slate.x == 0 || slate.x == 4 || slate.y == 0 || slate.y == 4) }
-    end
-
-    # omit empty rows
-    @inner_slates = @inner_slates.reject { |row| row.empty? }
+      desired_slates = row.select {|slate| !(slate.x == 0 || slate.x == 4 || slate.y == 0 || slate.y == 4) }
+    end.reject(&:empty?)
 
     return @inner_slates
  # map my array so that these values are filtered
