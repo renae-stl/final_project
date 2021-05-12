@@ -7,6 +7,7 @@ class Slates
     @x = x
     @y = y
     @colour = get_startup_colour
+    @selected_slate = false
   end
 
   # the default starting pattern of the game
@@ -45,7 +46,7 @@ class Slates
   end
   
   def unselect
-    @selected_slate = true
+    @selected_slate = false
   end
 
   def to_string 
