@@ -12,6 +12,7 @@ class Board
   def initialize
     @size = 5
     @board = startup_game_board
+    @shapes = []
   end
 
   def start_screen
@@ -30,7 +31,7 @@ class Board
     @size.times do |column_index|
       @board[column_index] = Array.new(@size)
       @size.times do |row_index|
-        @board[column_index][row_index] = Slates.new(row_index, column_index)
+        @board[column_index][row_index] = Slates.new(column_index, row_index)
       end
     end
 
@@ -38,18 +39,28 @@ class Board
   end
 
   def print_game_board
+    @shapes.each do |shape|
+      shape.remove 
+    end
+    @shapes = []
+    Square.new(
+      x: 0,
+      y: 0,
+      size: 600 ,
+      color: 'black',
+      z: 0
+    )
     output = "      0      1      2      3      4"
     @board.each.with_index do |row, index|
       output += "\n #{index} "
       row.each do |slate|
         output += slate.to_string
-        Square.new(
-          x: (slate.x * 100),
-          y: (slate.y * 100),
-          width: 25,
-          height: 25,
+        @shapes << Square.new(
+          x: (slate.x * 120),
+          y: (slate.y * 120),
+          size: 115,
           color: slate.colour,
-          z: 2
+          z: 1
         )
       end
     end
@@ -66,15 +77,15 @@ class Board
     end.reject(&:empty?)
   end
   
-  def solution_board
+  def current_game_board
     output = "      0      1      2      3      4"
     @inner_slates.shuffle.each.with_index do |row, index|
       output += "\n #{index} "
       row.each do |slate|
         Square.new(
           z: 2,
-          x: (slate.x * 100),
-          y: (slate.y * 100),
+          x: 100 + (slate.x * 100),
+          y: 100 + (slate.y * 100),
           width: 25,
           height: 25,
           color: slate.colour
@@ -87,26 +98,42 @@ class Board
   def make_move(move)
     blank_x, blank_y = blank_slate_position
 
+    # this also needs to handle when a move shouldn't happen because the black slate
+    # is on the edge
+
     case move
-    when move == "up"
+    when "up"
       @board[blank_x][blank_y], @board[blank_x][blank_y + 1] = @board[blank_x][blank_y + 1], @board[blank_x][blank_y]
-    when move == "down"
+    when "down"
       @board[blank_x][blank_y], @board[blank_x][blank_y - 1] = @board[blank_x][blank_y - 1], @board[blank_x][blank_y]
-    when move == "left"
+    when "left"
       @board[blank_x][blank_y], @board[blank_x + 1][blank_y] = @board[blank_x + 1][blank_y], @board[blank_x][blank_y]
-    when move == "right"
+    when "right"
       @board[blank_x][blank_y], @board[blank_x - 1][blank_y] = @board[blank_x - 1][blank_y], @board[blank_x][blank_y]
     else
       raise "Invalid Move!"
     end
+
+    reassign_slate_coordinates
+  end
+  
+  def reassign_slate_coordinates
+    @board.each.with_index do |column, column_index|
+      column.each.with_index do |slate, row_index|
+        slate.x = column_index
+        slate.y = row_index
+      end
+    end
   end
 
   def blank_slate_position
-    @blank_slate_position = @board.map do |row|
-      if @board[x, y].instance_variable_get(:@colour) == "blank"
-        row.select { |slate| slate[x][y] }
+    @blank_slate_position = @board.each do |row|
+      row.each do |slate|
+        if slate.colour == "black"
+          return [slate.x, slate.y]
+        end
       end
-    end.reject(&:empty?)
+    end
   end
 
   def timer

@@ -9,13 +9,13 @@ slate_sliders = Board.new
 set( { 
     :title => 'Slate Sliders!' ,
     :background => 'gray',
+    :width => 600,
+    :height => 600,
 } )
 
 music = Music.new('/Users/richardlawrence/Downloads/Kid_Icarus_Uprising_Black_Feathers_in_the_Sky_OC_ReMix.mp3')
 music.play
 music.volume = 30
-
-
 
 slate_sliders.start_screen
 puts
@@ -26,7 +26,7 @@ puts "** Print Game Board **\n\n"
 slate_sliders.print_game_board
 puts
 puts "** Inner Game Board **\n\n"
-pp slate_sliders.inner_game_board
+#pp slate_sliders.inner_game_board
 
 # puts
 # puts "** SOLUTION BOARD **\n\n"
@@ -35,15 +35,22 @@ pp slate_sliders.inner_game_board
 
 tick = 0
 
+
+
 update do
   if tick % 60 == 0
-    slate_sliders.inner_game_board
+    slate_sliders.print_game_board
   end
   tick += 1
 end
 
-on :key_down do
-    slate_sliders.make_move('up')
+on :key_down do |event|
+    if event.key == 'y'
+      slate_sliders.make_move('up')
+      clear
+      #slate_sliders.inner_game_board
+      slate_sliders.print_game_board
+    end
 end
 on :mouse_down do
     Window.clear
