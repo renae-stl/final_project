@@ -1,7 +1,8 @@
 class Slates
 
-  attr_accessor :x, :y
+  attr_accessor :x, :y, :colour
   attr_reader :selected_slate
+
 
   def initialize(x, y)
     @x = x
@@ -24,7 +25,7 @@ class Slates
       if @x <= 1
         return "white"
       elsif @x == 2
-        return "blank"
+        return "black"
       elsif @x >= 3
         return "white"
       end

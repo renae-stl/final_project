@@ -1,3 +1,4 @@
+require 'ruby2d'
 require_relative 'slates'
 
 # beginning of the game : generate a board 5x5 (initial board = A) -> player starts on this board
@@ -42,6 +43,14 @@ class Board
       output += "\n #{index} "
       row.each do |slate|
         output += slate.to_string
+        Square.new(
+          x: (slate.x * 100),
+          y: (slate.y * 100),
+          width: 25,
+          height: 25,
+          color: slate.colour,
+          z: 2
+        )
       end
     end
   
@@ -58,7 +67,21 @@ class Board
   end
   
   def solution_board
-    nil
+    output = "      0      1      2      3      4"
+    @inner_slates.shuffle.each.with_index do |row, index|
+      output += "\n #{index} "
+      row.each do |slate|
+        Square.new(
+          z: 2,
+          x: (slate.x * 100),
+          y: (slate.y * 100),
+          width: 25,
+          height: 25,
+          color: slate.colour
+        )
+        output += slate.to_string
+      end
+    end
   end
 
   def make_move(move)
