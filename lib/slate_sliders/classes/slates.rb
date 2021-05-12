@@ -1,11 +1,14 @@
 class Slates
 
   attr_accessor :x, :y, :colour
+  attr_reader :selected_slate
+
 
   def initialize(x, y)
     @x = x
     @y = y
     @colour = get_startup_colour
+    @selected_slate = false
   end
 
   # the default starting pattern of the game
@@ -37,6 +40,14 @@ class Slates
     end
 
     raise "Invalid Index!"
+  end
+
+  def select
+    @selected_slate = true
+  end
+  
+  def unselect
+    @selected_slate = false
   end
 
   def to_string 
