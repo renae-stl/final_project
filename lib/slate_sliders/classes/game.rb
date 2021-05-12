@@ -2,11 +2,11 @@ class Game
 
   def initialize
     @board = Board.new
-    @target_board = Board.new
+    @solution_board = Board.new
   end
 
   def game_over?
-    @board = @target_board
+    @board = @solution_board
   end
 
 end

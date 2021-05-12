@@ -8,15 +8,20 @@ slate_sliders = Board.new
 
 slate_sliders.start_screen
 puts
-puts "** Startup All Slates **\n\n"
-pp slate_sliders.startup_all_slates
+puts "** Startup Game Board **\n\n"
+pp slate_sliders.startup_game_board
 puts
-puts "** Print Board **\n\n"
-slate_sliders.print_board
+puts "** Print Game Board **\n\n"
+slate_sliders.print_game_board
+puts
+puts "** Inner Game Board **\n\n"
+pp slate_sliders.inner_game_board
 
 # puts
-# puts "** TARGET PATTERN **\n\n"
-# TARGET_PATTERN = slate_sliders.target_pattern
-# slate_sliders.print_inner_board(TARGET_PATTERN)
+# puts "** SOLUTION BOARD **\n\n"
 
-# slate_sliders.timer
+#slate_sliders.timer
+
+puts
+puts "** Current Position Of Blank Slate **\n\n"
+# pp slate_sliders.blank_slate_position
