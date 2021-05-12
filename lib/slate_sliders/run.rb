@@ -13,8 +13,9 @@ set( {
     :height => 600,
 } )
 
-
-
+music = Music.new('/Users/richardlawrence/Downloads/Kid_Icarus_Uprising_Black_Feathers_in_the_Sky_OC_ReMix.mp3')
+music.play
+music.volume = 30
 
 slate_sliders.start_screen
 puts
