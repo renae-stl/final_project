@@ -1,6 +1,7 @@
 class Slates
 
   attr_accessor :x, :y
+  attr_reader :selected_slate
 
   def initialize(x, y)
     @x = x
@@ -37,6 +38,14 @@ class Slates
     end
 
     raise "Invalid Index!"
+  end
+
+  def select
+    @selected_slate = true
+  end
+  
+  def unselect
+    @selected_slate = true
   end
 
   def to_string 
