@@ -31,7 +31,7 @@ class Board
     @size.times do |column_index|
       @board[column_index] = Array.new(@size)
       @size.times do |row_index|
-        @board[column_index][row_index] = Slates.new(row_index, column_index)
+        @board[column_index][row_index] = Slates.new(column_index, row_index)
       end
     end
 
@@ -42,6 +42,7 @@ class Board
     @shapes.each do |shape|
       shape.remove 
     end
+    @shapes = []
     Square.new(
       x: 0,
       y: 0,
@@ -95,7 +96,10 @@ class Board
   end
 
   def make_move(move)
-    blank_y, blank_x = blank_slate_position
+    blank_x, blank_y = blank_slate_position
+
+    # this also needs to handle when a move shouldn't happen because the black slate
+    # is on the edge
 
     case move
     when "up"
@@ -108,6 +112,17 @@ class Board
       @board[blank_x][blank_y], @board[blank_x - 1][blank_y] = @board[blank_x - 1][blank_y], @board[blank_x][blank_y]
     else
       raise "Invalid Move!"
+    end
+
+    reassign_slate_coordinates
+  end
+  
+  def reassign_slate_coordinates
+    @board.each.with_index do |column, column_index|
+      column.each.with_index do |slate, row_index|
+        slate.x = column_index
+        slate.y = row_index
+      end
     end
   end
 
