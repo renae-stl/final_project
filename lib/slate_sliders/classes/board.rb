@@ -1,13 +1,7 @@
 require 'ruby2d'
 require_relative 'slates'
 
-# beginning of the game : generate a board 5x5 (initial board = A) -> player starts on this board
-# to find the target board: for N iterations (e.g at least 5 and then as soon as there's no blank tile in the 3x3 center), swap the blank tile with a random adjacent tile
-# at the end, you have the target board (B) -> truncate the edges (3x3) -> give the target center to the player as goal
-
 class Board
-
-  #attr_reader :board
 
   def initialize
     @size = 5

@@ -3,7 +3,6 @@ class Slates
   attr_accessor :x, :y, :colour
   attr_reader :selected_slate
 
-
   def initialize(x, y)
     @x = x
     @y = y
@@ -11,35 +10,26 @@ class Slates
     @selected_slate = false
   end
 
-  # the default starting pattern of the game
   def get_startup_colour
     if @y <= 1
-      if @x <= 1
-        return "red"
-      elsif @x == 2
-        return "yellow"
-      elsif @x >= 3
-        return "blue"
-      end
+      helper(@x,"red", "yellow", "blue")
     elsif @y == 2
-      if @x <= 1
-        return "white"
-      elsif @x == 2
-        return "black"
-      elsif @x >= 3
-        return "white"
-      end
+      helper(@x,"white", "black", "white")
     elsif @y >= 3
-      if @x <= 1
-        return "orange"
-      elsif @x == 2
-        return "yellow"
-      elsif @x >= 3
-        return "green"
-      end
+      helper(@x,"orange", "yellow", "green")
     end
 
     raise "Invalid Index!"
+  end
+
+  def helper(x_pos, colour1, colour2, colour3)
+    if x_pos <= 1
+      colour1
+    elsif x_pos == 2
+      colour2
+    elsif x_pos >= 3
+      colour3
+    end
   end
 
   def select
