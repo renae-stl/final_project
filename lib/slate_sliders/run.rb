@@ -11,6 +11,8 @@ set( {
     :background => 'gray',
 } )
 
+song = Music.new('song.mp3')
+
 
 slate_sliders.start_screen
 puts
