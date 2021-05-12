@@ -11,6 +11,7 @@ Slate! Sliders Notes
 # Problems
 
 1. We want to make sure that the randomly generated game board contains the pattern solution
+2. How to get threads to work; to get the timer to run in the program.
 
 ///////////////////////////////////////////////////////////
 
@@ -20,6 +21,8 @@ Slate! Sliders Notes
 - I can select a slate and move it to another position
 - I know whether I can move a slate to a desired position or not
 - I can retrieve the state of all slates and know whether it's the correct pattern
+- How do we test if moves are valid or not?
+- How do we stop invalid slates from getting selected?
 
 ///////////////////////////////////////////////////////////
 
