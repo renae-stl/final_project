@@ -38,40 +38,67 @@ on :mouse_down do
         set( { 
         :background => '#0E1619',
     } )
-    end
+    
 
 
-    music = Music.new('./resources/music/game_music.mp3')
-    music.play
-    music.volume = 5 #30
-  
-    tick = 0
+        music = Music.new('./resources/music/game_music.mp3')
+        music.play
+        music.volume = 5 #30
+    
+        tick = 0
 
-    # slate_sliders.inner_game_board
+        # slate_sliders.inner_game_board
 
 
-    update do
-    if tick % 60 == 0
-        slate_sliders.print_game_board
-        solution_board.target_game_board
-    end
-
-    tick += 1
-    end
-
-    on :key_down do |event|
-      if event.key == 'up' || event.key == 'down' ||
-        event.key == 'left' || event.key == 'right'
-
-        slate_sliders.make_move(event.key) if slate_sliders.is_move_valid?(event.key)
-        slate_sliders.print_game_board
-
-        if slate_sliders.same_inner_board?(solution_board)
-          puts "WON!!!"
+        update do
+        if tick % 60 == 0
+            slate_sliders.print_game_board
+            solution_board.target_game_board
         end
-      end
-    end
 
+        tick += 1
+        end
+
+        on :key_down do |event|
+        if event.key == 'up' || event.key == 'down' ||
+            event.key == 'left' || event.key == 'right'
+
+            slate_sliders.make_move(event.key) if slate_sliders.is_move_valid?(event.key)
+            slate_sliders.print_game_board
+
+            if slate_sliders.same_inner_board?(solution_board)
+            puts "WON!!!"
+            Image.new(
+                './resources/images/winner.png',
+                x: 150, y: 5, z: 3,
+                width: 350, height: 300,
+            )
+            Image.new(
+                './resources/images/play_button.png',
+                x: 420, y: 400, z: 3,
+                width: 150, height: 75
+            )
+            Image.new(
+                './resources/images/close-button.png',
+                x: 450, y: 500, z: 3,
+                width: 75, height: 75
+            )
+            end
+            on :mouse_down do 
+                # if Window.mouse_x.between?(420, 570) && Window.mouse_y.between?(400, 475)
+                    
+                # end
+                if Window.mouse_x.between?(450, 525) && Window.mouse_y.between?(500, 575)
+                    Window.close
+                end
+            end
+
+
+        end
+        end
+    end
 end
+
+
 show
 
