@@ -30,8 +30,8 @@ class Board
     @shapes = []
     Square.new(
       x: 0,
-      y: 0,
-      size: 600 ,
+      y: 200,
+      size: 400 ,
       color: '#0E1619',
       z: 0
     )
@@ -42,9 +42,9 @@ class Board
       row.each do |slate|
         output += slate.to_string
         @shapes << Square.new(
-          x: (slate.x * 120),
-          y: (slate.y * 120),
-          size: 115,
+          x: (slate.x * 80),
+          y: 200 + (slate.y * 80),
+          size: 75,
           color: slate.colour,
           z: 1
         )
