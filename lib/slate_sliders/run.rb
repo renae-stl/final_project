@@ -7,7 +7,6 @@ require_relative 'classes/game'
 slate_sliders = Board.new
 set( { 
     :title => 'Slate Sliders!' ,
-    :background => 'orange',
     :width => 600,
     :height => 600,
     :background => '#0E1619',
@@ -88,11 +87,6 @@ on :mouse_down do
     # pp slate_sliders.blank_slate_position
     end
 end
-
-
-=======
-
-
 show
 
 #&& slate_sliders.is_move_valid?('up')
