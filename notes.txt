@@ -11,10 +11,10 @@ Slate! Sliders Notes
 # Problems
 
 1. We want to make sure that we randomly generate a game board that contains the pattern solution.
-    a. Make the solution board:
-        i. Beginning of the game : generate a board 5x5 (initial board = A) -> player starts on this board.
-        ii. To find the target board: for N iterations (e.g at least 5 and then as soon as there's no blank tile in the 3x3 center), swap the blank tile with a random adjacent tile.
-        iii. At the end, you have the target board (B) -> truncate the edges (3x3) -> give the target center to the player as goal.
+    a. How do we make the solution board?
+        i. Beginning of the game: generate a board 5x5 (initial board = A) -> player starts on this board.
+        ii. To find the solution board: for N iterations (e.g at least, 5 moves and then as soon as there's no blank tile in the 3x3 center) swap the blank tile with a random adjacent tile.
+        iii. At the end, you have the solution board (B) -> truncate the edges (3x3) -> give the target center to the player as goal.
 2. How to get threads to work which will enable the timer to run in the program.
 
 ///////////////////////////////////////////////////////////
@@ -201,3 +201,63 @@ min, sec = t/60, t%60
 print "\b"*5
 printf "%02d:%02d", min, sec if t > 0
 end
+
+///////////////////////////////////////////////////////////
+
+# Speed Tiles Colour Scheme
+# "red", "yellow", "blue"
+# "white", "black", "white"
+# "orange", "yellow", "green"
+
+///////////////////////////////////////////////////////////
+
+# def start_screen
+#   puts
+#   puts "-" * 16
+#   puts ' Slate! Sliders '
+#   puts "-" * 16
+#   puts
+#   puts '@ 2021 Team Earth'
+#   puts
+#   end
+
+///////////////////////////////////////////////////////////
+
+slate_sliders.start_screen
+puts
+puts "** Startup Game Board **\n\n"
+pp slate_sliders.startup_game_board
+puts
+puts "** Print Game Board **\n\n"
+slate_sliders.print_game_board
+puts
+puts "** Inner Game Board **\n\n"
+#pp slate_sliders.inner_game_board
+puts
+# puts
+# puts "** SOLUTION BOARD **\n\n"
+puts
+#slate_sliders.timer
+puts
+puts "** Current Position Of Blank Slate **\n\n"
+# pp slate_sliders.blank_slate_position
+
+///////////////////////////////////////////////////////////
+
+# def current_game_board
+#   output = "      0      1      2      3      4"
+#   @inner_slates.shuffle.each.with_index do |row, index|
+#     output += "\n #{index} "
+#     row.each do |slate|
+#       Square.new(
+#         z: 2,
+#         x: 100 + (slate.x * 100),
+#         y: 100 + (slate.y * 100),
+#         width: 25,
+#         height: 25,
+#         color: slate.colour
+#       )
+#       output += slate.to_string
+#     end
+#   end
+# end
