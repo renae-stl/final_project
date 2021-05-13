@@ -6,7 +6,6 @@ class Board
   def initialize
     @side_length = 5
     @board = startup_game_board
-    # generate_solution_board
     @shapes = []
     @target_shapes = []
   end
@@ -28,38 +27,32 @@ class Board
     @shapes.each do |shape|
       shape.remove 
     end
+
     @shapes = []
+
     Square.new(
-      x: 5,
-      y: 200,
-      size: 405 ,
+      x: 5, y: 200,
+      size: 405,
       color: '#0E1619',
       z: 0
     )
     Square.new(
-      x: 85,
-      y: 275,
-      size: 245 ,
+      x: 85, y: 275,
+      size: 245,
       color: 'blue',
       z: 1
     )
 
-    output = "      0      1      2      3      4"
     @board.each.with_index do |row, index|
-      output += "\n #{index} "
       row.each do |slate|
-        output += slate.to_string
         @shapes << Square.new(
-          x: 10 + (slate.x * 80),
-          y: 200 + (slate.y * 80),
+          x: 10 + (slate.x_pos * 80), y: 200 + (slate.y_pos * 80),
+          z: 2,
           size: 75,
-          color: slate.colour,
-          z: 2
+          color: slate.colour
         )
       end
     end
-  
-  #  puts output
   end
 
   def inner_game_board
@@ -67,7 +60,7 @@ class Board
     # Remove anything where y = 0, x = 0, y = 4, x = 4
 
     @inner_slates = @board.map do |row|
-      row.select {|slate| !(slate.x == 0 || slate.x == 4 || slate.y == 0 || slate.y == 4) }
+      row.select {|slate| !(slate.x_pos == 0 || slate.x_pos == 4 || slate.y_pos == 0 || slate.y_pos == 4) }
     end.reject(&:empty?)
   end
   
@@ -75,42 +68,39 @@ class Board
     @target_shapes.each do |shape|
       shape.remove 
     end
+
     @target_shapes = []
+
     Square.new(
-      x: 500,
-      y: 0,
+      x: 500, y: 0,
       size: 80 ,
       color: '#0E1619',
       z: 0
     )
-    output = "      0      1      2      3      4"
+
     inner_game_board.each.with_index do |row, index|
-      output += "\n #{index} "
       row.each do |slate|
         Square.new(
-          z: 2,
-          x: 500 + (slate.x * 20),
-          y: (slate.y * 20),
+          x: 500 + (slate.x_pos * 20), y: (slate.y_pos * 20),
           size: 18,
-          color: slate.colour
+          color: slate.colour,
+          z: 2
         )
-        output += slate.to_string
       end
     end
   end
 
-
-  def make_move(move, board_to_update=@board)
+  def make_move(move)
     blank_x, blank_y = blank_slate_position
 
     case move
-    when "down"
+    when 'down'
       @board[blank_x][blank_y], @board[blank_x][blank_y + 1] = @board[blank_x][blank_y + 1], @board[blank_x][blank_y]
-    when "up"
+    when 'up'
       @board[blank_x][blank_y], @board[blank_x][blank_y - 1] = @board[blank_x][blank_y - 1], @board[blank_x][blank_y]
-    when "right"
+    when 'right'
       @board[blank_x][blank_y], @board[blank_x + 1][blank_y] = @board[blank_x + 1][blank_y], @board[blank_x][blank_y]
-    when "left"
+    when 'left'
       @board[blank_x][blank_y], @board[blank_x - 1][blank_y] = @board[blank_x - 1][blank_y], @board[blank_x][blank_y]
     else
       raise 'Invalid Move!'
@@ -122,8 +112,8 @@ class Board
   def reassign_slate_coordinates
     @board.each.with_index do |column, column_index|
       column.each.with_index do |slate, row_index|
-        slate.x = column_index
-        slate.y = row_index
+        slate.x_pos = column_index
+        slate.y_pos = row_index
       end
     end
   end
@@ -132,7 +122,7 @@ class Board
     @blank_slate_position = @board.each do |row|
       row.each do |slate|
         if slate.colour == '#0E1619'
-          return [slate.x, slate.y]
+          return [slate.x_pos, slate.y_pos]
         end
       end
     end
@@ -146,11 +136,11 @@ class Board
         end
       end
     end
-    return true
+
+    true
   end
 
   def generate_solution_board
-
     possible_moves = %w[up down left right]
 
     x = 10
@@ -165,25 +155,24 @@ class Board
       random_move = possible_moves.sample
       self.make_move(random_move) if self.is_move_valid?(random_move)
     end
-
   end
 
   def blank_slate_on_edge?
     blank_x, blank_y = blank_slate_position
 
-    return blank_x == 0 || blank_x == 4 || blank_y == 0 || blank_y == 4
+    blank_x == 0 || blank_x == 4 || blank_y == 0 || blank_y == 4
   end
 
   def is_move_valid?(move)
     blank_x, blank_y = blank_slate_position
 
-    if move == "down" && (blank_y != @side_length - 1)
+    if move == 'down' && (blank_y != @side_length - 1)
       true
-    elsif move == "up" && (blank_y != 0)
+    elsif move == 'up' && (blank_y != 0)
       true
-    elsif  move == "right" && (blank_x != @side_length - 1)
+    elsif  move == 'right' && (blank_x != @side_length - 1)
       true
-    elsif  move == "left" && (blank_x != 0)
+    elsif  move == 'left' && (blank_x != 0)
       true
     else
       false
@@ -201,7 +190,6 @@ class Board
       min, sec = t/60, t%60
       print "\b"*5
       printf "%02d:%02d", min, sec if t > 0
-
     end
   end
 

@@ -1,22 +1,22 @@
 class Slates
 
-  attr_accessor :x, :y, :colour
+  attr_accessor :x_pos, :y_pos, :colour
   attr_reader :selected_slate
 
-  def initialize(x, y)
-    @x = x
-    @y = y
+  def initialize(x_pos, y_pos)
+    @x_pos = x_pos
+    @y_pos = y_pos
     @colour = get_startup_colour
     @selected_slate = false
   end
 
   def get_startup_colour
-    if @y <= 1
-      return row_colours(@x,'#EE6055', '#60D394', '#AAF683')
-    elsif @y == 2
-      return row_colours(@x,'white', '#0E1619', 'white')
-    elsif @y >= 3
-      return row_colours(@x,'#FF9B85', '#60D394', '#FFD97D')
+    if @y_pos <= 1
+      return row_colours(@x_pos, '#EE6055', '#60D394', '#AAF683')
+    elsif @y_pos == 2
+      return row_colours(@x_pos, 'white', '#0E1619', 'white')
+    elsif @y_pos >= 3
+      return row_colours(@x_pos, '#FF9B85', '#60D394', '#FFD97D')
     end
 
     raise 'Invalid Index!'
@@ -38,10 +38,6 @@ class Slates
   
   def unselect
     @selected_slate = false
-  end
-
-  def to_string 
-    "[ #{@colour.slice(0,4)} ]"
   end
 
 end

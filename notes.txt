@@ -291,3 +291,9 @@ puts "** Current Position Of Blank Slate **\n\n"
 #     #slate_sliders.inner_game_board
 #     slate_sliders.print_game_board
 # end
+
+///////////////////////////////////////////////////////////
+
+def to_string
+    "[ #{@colour.slice(0,4)} ]"
+end
