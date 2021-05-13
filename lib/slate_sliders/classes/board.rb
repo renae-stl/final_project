@@ -100,14 +100,14 @@ class Board
     blank_x, blank_y = blank_slate_position
 
     case move
-    when 'up'
-     board_to_update[ blank_x][blank_y],board_to_update[blank_x][blank_y + 1] =board_to_update[blank_x][blank_y + 1],board_to_update[blank_x][blank_y]
-    when 'down'
-     board_to_update[blank_x][blank_y],board_to_update[blank_x][blank_y - 1] =board_to_update[blank_x][blank_y - 1],board_to_update[blank_x][blank_y]
-    when 'left'
-     board_to_update[blank_x][blank_y],board_to_update[blank_x + 1][blank_y] =board_to_update[blank_x + 1][blank_y],board_to_update[blank_x][blank_y]
-    when 'right'
-     board_to_update[blank_x][blank_y],board_to_update[blank_x - 1][blank_y] =board_to_update[blank_x - 1][blank_y],board_to_update[blank_x][blank_y]
+    when "down"
+      @board[blank_x][blank_y], @board[blank_x][blank_y + 1] = @board[blank_x][blank_y + 1], @board[blank_x][blank_y]
+    when "up"
+      @board[blank_x][blank_y], @board[blank_x][blank_y - 1] = @board[blank_x][blank_y - 1], @board[blank_x][blank_y]
+    when "right"
+      @board[blank_x][blank_y], @board[blank_x + 1][blank_y] = @board[blank_x + 1][blank_y], @board[blank_x][blank_y]
+    when "left"
+      @board[blank_x][blank_y], @board[blank_x - 1][blank_y] = @board[blank_x - 1][blank_y], @board[blank_x][blank_y]
     else
       raise 'Invalid Move!'
     end
@@ -162,13 +162,13 @@ class Board
   def is_move_valid?(move)
     blank_x, blank_y = blank_slate_position
 
-    if move == 'up' && (blank_y != @side_length - 1)
+    if move == "down" && (blank_y != @side_length - 1)
       true
-    elsif move == 'down' && (blank_y != 0)
+    elsif move == "up" && (blank_y != 0)
       true
-    elsif  move == 'left' && (blank_x != @side_length - 1)
+    elsif  move == "right" && (blank_x != @side_length - 1)
       true
-    elsif  move == 'right' && (blank_x != 0)
+    elsif  move == "left" && (blank_x != 0)
       true
     else
       false

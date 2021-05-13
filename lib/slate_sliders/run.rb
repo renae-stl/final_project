@@ -40,10 +40,11 @@ on :mouse_down do
     } )
     end
 
+
     music = Music.new('./resources/music/game_music.mp3')
     music.play
     music.volume = 30
-
+  
     tick = 0
 
     # slate_sliders.inner_game_board
@@ -54,12 +55,13 @@ on :mouse_down do
         slate_sliders.print_game_board
         solution_board.target_game_board
     end
+
     tick += 1
     end
 
     on :key_down do |event|
       if event.key == 'up' || event.key == 'down' ||
-         event.key == 'left' || event.key == 'right'
+        event.key == 'left' || event.key == 'right'
 
         slate_sliders.make_move(event.key) if slate_sliders.is_move_valid?(event.key)
         slate_sliders.print_game_board
