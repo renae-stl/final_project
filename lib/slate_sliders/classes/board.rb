@@ -1,37 +1,22 @@
 require 'ruby2d'
 require_relative 'slates'
 
-# beginning of the game : generate a board 5x5 (initial board = A) -> player starts on this board
-# to find the target board: for N iterations (e.g at least 5 and then as soon as there's no blank tile in the 3x3 center), swap the blank tile with a random adjacent tile
-# at the end, you have the target board (B) -> truncate the edges (3x3) -> give the target center to the player as goal
-
 class Board
 
-  #attr_reader :board
-
   def initialize
-    @size = 5
+    @side_length = 5
     @board = startup_game_board
+    @solution_board = solution_board
     @shapes = []
     @target_shapes = []
   end
 
-  def start_screen
-    puts
-    puts "-" * 16
-    puts ' Slate! Sliders '
-    puts "-" * 16
-    puts
-    puts '@ 2021 Team Earth'
-    puts
-  end
-
   def startup_game_board
-    @board = Array.new(@size)
+    @board = Array.new(@side_length)
 
-    @size.times do |column_index|
-      @board[column_index] = Array.new(@size)
-      @size.times do |row_index|
+    @side_length.times do |column_index|
+      @board[column_index] = Array.new(@side_length)
+      @side_length.times do |row_index|
         @board[column_index][row_index] = Slates.new(column_index, row_index)
       end
     end
@@ -48,9 +33,10 @@ class Board
       x: 5,
       y: 200,
       size: 405 ,
-      color: 'black',
+      color: '#0E1619',
       z: 0
     )
+
     output = "      0      1      2      3      4"
     @board.each.with_index do |row, index|
       output += "\n #{index} "
@@ -78,7 +64,7 @@ class Board
     end.reject(&:empty?)
   end
   
-  def current_game_board
+  def target_game_board
     @target_shapes.each do |shape|
       shape.remove 
     end
@@ -106,11 +92,9 @@ class Board
     end
   end
 
+
   def make_move(move)
     blank_x, blank_y = blank_slate_position
-
-    # this also needs to handle when a move shouldn't happen because the black slate
-    # is on the edge
 
     case move
     when "up"
@@ -140,13 +124,33 @@ class Board
   def blank_slate_position
     @blank_slate_position = @board.each do |row|
       row.each do |slate|
-        if slate.colour == "black"
+        if slate.colour == "#0E1619"
           return [slate.x, slate.y]
         end
       end
     end
   end
 
+  def solution_board
+    @solution_board
+  end
+
+  def is_move_valid?(move)
+    blank_x, blank_y = blank_slate_position
+
+    if move == "up" && (blank_y != @side_length - 1)
+      true
+    elsif move == "down" && (blank_y != 0)
+      true
+    elsif  move == "left" && (blank_x != @side_length - 1)
+      true
+    elsif  move == "right" && (blank_x != 0)
+      true
+    else
+      false
+    end
+  end
+  
   def timer
     max_time_min = 2 # time in minutes
     max_time_sec = Time.now + max_time_min.to_i*60

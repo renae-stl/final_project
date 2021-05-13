@@ -10,10 +10,12 @@ set( {
     :background => 'orange',
     :width => 600,
     :height => 600,
+    :background => '#0E1619',
 } )
 @game_started = false
 mouse_coordinate_x = Window.mouse_x
 mouse_coordinate_y = Window.mouse_y
+
 
 Image.new(
     "./resources/images/SlateSliders.png",
@@ -66,41 +68,18 @@ on :mouse_down do
     update do
     if tick % 60 == 0
         slate_sliders.print_game_board
-        slate_sliders.current_game_board
+        slate_sliders.target_game_board
     end
     tick += 1
     end
 
     on :key_down do |event|
-        if event.key == 's'
-        slate_sliders.make_move('up')
-        clear
-        #slate_sliders.inner_game_board
+      if event.key == 'up' || event.key == 'down' ||
+         event.key == 'left' || event.key == 'right'
+
+        slate_sliders.make_move(event.key) if slate_sliders.is_move_valid?(event.key)
         slate_sliders.print_game_board
-        end
-
-        if event.key == 'w'
-            slate_sliders.make_move('down')
-            clear
-            #slate_sliders.inner_game_board
-            slate_sliders.print_game_board
-        end
-
-        if event.key == 'd'
-            slate_sliders.make_move('left')
-            clear
-            #slate_sliders.inner_game_board
-            slate_sliders.print_game_board
-        end
-
-        if event.key == 'a'
-            slate_sliders.make_move('right')
-            clear
-            #slate_sliders.inner_game_board
-            slate_sliders.print_game_board
-        end
-
-
+      end
     end
 
 
@@ -111,4 +90,9 @@ on :mouse_down do
 end
 
 
+=======
+
+
 show
+
+#&& slate_sliders.is_move_valid?('up')
