@@ -13,9 +13,9 @@ set( {
     :height => 600,
 } )
 
-#music = Music.new('/Users/richardlawrence/Downloads/Kid_Icarus_Uprising_Black_Feathers_in_the_Sky_OC_ReMix.mp3')
-# music.play
-# music.volume = 30
+music = Music.new('./resources/music/Kid_Icarus_Uprising_Black_Feathers_in_the_Sky_OC_ReMix.mp3')
+music.play
+music.volume = 0
 
 slate_sliders.start_screen
 puts
@@ -35,11 +35,13 @@ puts "** Inner Game Board **\n\n"
 
 tick = 0
 
+slate_sliders.inner_game_board
 
 
 update do
   if tick % 60 == 0
     slate_sliders.print_game_board
+    slate_sliders.current_game_board
   end
   tick += 1
 end
@@ -75,11 +77,7 @@ on :key_down do |event|
 
 
 end
-on :mouse_down do
-    Window.clear
-    slate_sliders.inner_game_board
-    slate_sliders.solution_board
-end
+
 
 puts
 puts "** Current Position Of Blank Slate **\n\n"

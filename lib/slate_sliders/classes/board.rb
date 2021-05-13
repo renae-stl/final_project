@@ -13,6 +13,7 @@ class Board
     @size = 5
     @board = startup_game_board
     @shapes = []
+    @target_shapes = []
   end
 
   def start_screen
@@ -44,9 +45,9 @@ class Board
     end
     @shapes = []
     Square.new(
-      x: 0,
+      x: 5,
       y: 200,
-      size: 400 ,
+      size: 405 ,
       color: 'black',
       z: 0
     )
@@ -56,7 +57,7 @@ class Board
       row.each do |slate|
         output += slate.to_string
         @shapes << Square.new(
-          x: (slate.x * 80),
+          x: 10 + (slate.x * 80),
           y: 200 + (slate.y * 80),
           size: 75,
           color: slate.colour,
@@ -65,7 +66,7 @@ class Board
       end
     end
   
-    puts output
+  #  puts output
   end
 
   def inner_game_board
@@ -78,16 +79,26 @@ class Board
   end
   
   def current_game_board
+    @target_shapes.each do |shape|
+      shape.remove 
+    end
+    @target_shapes = []
+    Square.new(
+      x: 500,
+      y: 0,
+      size: 80 ,
+      color: 'black',
+      z: 0
+    )
     output = "      0      1      2      3      4"
-    @inner_slates.shuffle.each.with_index do |row, index|
+    @inner_slates.each.with_index do |row, index|
       output += "\n #{index} "
       row.each do |slate|
         Square.new(
           z: 2,
-          x: 100 + (slate.x * 100),
-          y: 100 + (slate.y * 100),
-          width: 25,
-          height: 25,
+          x: 500 + (slate.x * 20),
+          y: (slate.y * 20),
+          size: 18,
           color: slate.colour
         )
         output += slate.to_string
