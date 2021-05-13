@@ -13,9 +13,9 @@ set( {
     :height => 600,
 } )
 
-music = Music.new('/Users/richardlawrence/Downloads/Kid_Icarus_Uprising_Black_Feathers_in_the_Sky_OC_ReMix.mp3')
-music.play
-music.volume = 30
+#music = Music.new('/Users/richardlawrence/Downloads/Kid_Icarus_Uprising_Black_Feathers_in_the_Sky_OC_ReMix.mp3')
+# music.play
+# music.volume = 30
 
 slate_sliders.start_screen
 puts
@@ -45,12 +45,35 @@ update do
 end
 
 on :key_down do |event|
-    if event.key == 'y'
+    if event.key == 's'
       slate_sliders.make_move('up')
       clear
       #slate_sliders.inner_game_board
       slate_sliders.print_game_board
     end
+
+    if event.key == 'w'
+        slate_sliders.make_move('down')
+        clear
+        #slate_sliders.inner_game_board
+        slate_sliders.print_game_board
+    end
+
+    if event.key == 'd'
+        slate_sliders.make_move('left')
+        clear
+        #slate_sliders.inner_game_board
+        slate_sliders.print_game_board
+    end
+
+    if event.key == 'a'
+        slate_sliders.make_move('right')
+        clear
+        #slate_sliders.inner_game_board
+        slate_sliders.print_game_board
+    end
+
+
 end
 on :mouse_down do
     Window.clear
