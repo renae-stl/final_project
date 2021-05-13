@@ -23,42 +23,19 @@ update do
 end
 
 on :key_down do |event|
-    if event.key == 's'
-      slate_sliders.make_move('up') && slate_sliders.is_move_valid?('up')
-      clear
-      #slate_sliders.inner_game_board
-      slate_sliders.print_game_board
-    end
+  if event.key == 'up' || event.key == 'down' ||
+     event.key == 'left' || event.key == 'right'
 
-    if event.key == 'w'
-        slate_sliders.make_move('down')
-        clear
-        #slate_sliders.inner_game_board
-        slate_sliders.print_game_board
-    end
-
-    if event.key == 'd'
-        slate_sliders.make_move('left')
-        clear
-        #slate_sliders.inner_game_board
-        slate_sliders.print_game_board
-    end
-
-    if event.key == 'a'
-        slate_sliders.make_move('right')
-        clear
-        #slate_sliders.inner_game_board
-        slate_sliders.print_game_board
-    end
-
-
+    slate_sliders.make_move(event.key) if slate_sliders.is_move_valid?(event.key)
+    slate_sliders.print_game_board
+  end
 end
+
 on :mouse_down do
     Window.clear
     slate_sliders.inner_game_board
     #slate_sliders.solution_board
 end
-#show
+show
 
-p slate_sliders.startup_game_board
-p slate_sliders.is_move_valid?("up")
+#&& slate_sliders.is_move_valid?('up')

@@ -108,15 +108,16 @@ class Board
   def is_move_valid?(move)
     blank_x, blank_y = blank_slate_position
 
-    case move
-    when "up" && (blank_y != @side_length - 1)
+    if move == "up" && (blank_y != @side_length - 1)
       true
-    when "down" && (blank_y != 0)
+    elsif move == "down" && (blank_y != 0)
       true
-    when "left" && (blank_x != @side_length - 1)
+    elsif  move == "left" && (blank_x != @side_length - 1)
       true
-    when "right" && (blank_x != 0)
+    elsif  move == "right" && (blank_x != 0)
       true
+    else
+      false
     end
   end
   
