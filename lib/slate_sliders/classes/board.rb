@@ -36,6 +36,13 @@ class Board
       color: '#0E1619',
       z: 0
     )
+    Square.new(
+      x: 85,
+      y: 275,
+      size: 245 ,
+      color: 'blue',
+      z: 1
+    )
 
     output = "      0      1      2      3      4"
     @board.each.with_index do |row, index|
@@ -47,7 +54,7 @@ class Board
           y: 200 + (slate.y * 80),
           size: 75,
           color: slate.colour,
-          z: 1
+          z: 2
         )
       end
     end
@@ -134,7 +141,7 @@ class Board
   def same_inner_board?(other_board)
     inner_game_board.each.with_index do |row, i|
       row.each.with_index do |slate, j|
-        if slate.colour == other_board.inner_game_board[i][j].colour
+        if slate.colour != other_board.inner_game_board[i][j].colour
           return false
         end
       end
