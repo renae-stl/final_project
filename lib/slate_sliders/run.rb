@@ -37,56 +37,33 @@ on :mouse_down do
         set( { 
         :background => 'green',
     } )
-
+    end
 
     music = Music.new('./resources/music/Kid_Icarus_Uprising_Black_Feathers_in_the_Sky_OC_ReMix.mp3')
     music.play
-    music.volume = 30
+    music.volume = 10
 
-    slate_sliders.start_screen
-    puts
-    puts "** Startup Game Board **\n\n"
-    pp slate_sliders.startup_game_board
-    puts
-    puts "** Print Game Board **\n\n"
-    slate_sliders.print_game_board
-    puts
-    puts "** Inner Game Board **\n\n"
-    #pp slate_sliders.inner_game_board
-
-    # puts
-    # puts "** SOLUTION BOARD **\n\n"
-
-    #slate_sliders.timer
-
+    
     tick = 0
 
     slate_sliders.inner_game_board
 
 
     update do
-    if tick % 60 == 0
-        slate_sliders.print_game_board
-        slate_sliders.target_game_board
-    end
+        if tick % 60 == 0
+            slate_sliders.print_game_board
+            slate_sliders.target_game_board
+        end
     tick += 1
     end
 
     on :key_down do |event|
       if event.key == 'up' || event.key == 'down' ||
-         event.key == 'left' || event.key == 'right'
+        event.key == 'left' || event.key == 'right'
 
         slate_sliders.make_move(event.key) if slate_sliders.is_move_valid?(event.key)
         slate_sliders.print_game_board
       end
     end
-
-
-    puts
-    puts "** Current Position Of Blank Slate **\n\n"
-    # pp slate_sliders.blank_slate_position
-    end
 end
 show
-
-#&& slate_sliders.is_move_valid?('up')
