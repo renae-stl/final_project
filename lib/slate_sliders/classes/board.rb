@@ -8,6 +8,7 @@ class Board
     @board = startup_game_board
     @solution_board = solution_board
     @shapes = []
+    @target_shapes = []
   end
 
   def startup_game_board
@@ -29,9 +30,9 @@ class Board
     end
     @shapes = []
     Square.new(
-      x: 0,
+      x: 5,
       y: 200,
-      size: 400 ,
+      size: 405 ,
       color: '#0E1619',
       z: 0
     )
@@ -42,7 +43,7 @@ class Board
       row.each do |slate|
         output += slate.to_string
         @shapes << Square.new(
-          x: (slate.x * 80),
+          x: 10 + (slate.x * 80),
           y: 200 + (slate.y * 80),
           size: 75,
           color: slate.colour,
@@ -51,7 +52,7 @@ class Board
       end
     end
   
-    puts output
+  #  puts output
   end
 
   def inner_game_board
@@ -62,6 +63,35 @@ class Board
       row.select {|slate| !(slate.x == 0 || slate.x == 4 || slate.y == 0 || slate.y == 4) }
     end.reject(&:empty?)
   end
+  
+  def target_game_board
+    @target_shapes.each do |shape|
+      shape.remove 
+    end
+    @target_shapes = []
+    Square.new(
+      x: 500,
+      y: 0,
+      size: 80 ,
+      color: 'black',
+      z: 0
+    )
+    output = "      0      1      2      3      4"
+    @inner_slates.each.with_index do |row, index|
+      output += "\n #{index} "
+      row.each do |slate|
+        Square.new(
+          z: 2,
+          x: 500 + (slate.x * 20),
+          y: (slate.y * 20),
+          size: 18,
+          color: slate.colour
+        )
+        output += slate.to_string
+      end
+    end
+  end
+
 
   def make_move(move)
     blank_x, blank_y = blank_slate_position
