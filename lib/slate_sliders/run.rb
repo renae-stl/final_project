@@ -43,7 +43,7 @@ on :mouse_down do
 
     music = Music.new('./resources/music/game_music.mp3')
     music.play
-    music.volume = 30
+    music.volume = 5 #30
   
     tick = 0
 
@@ -65,6 +65,10 @@ on :mouse_down do
 
         slate_sliders.make_move(event.key) if slate_sliders.is_move_valid?(event.key)
         slate_sliders.print_game_board
+
+        if slate_sliders.same_inner_board?(solution_board)
+          puts "WON!!!"
+        end
       end
     end
 
