@@ -5,7 +5,9 @@ require_relative 'classes/slates'
 require_relative 'classes/game'
 
 slate_sliders = Board.new
-set( { 
+solution_board = Board.new
+solution_board.generate_solution_board
+set( {
     :title => 'Slate Sliders!' ,
     :width => 600,
     :height => 600,
@@ -15,15 +17,14 @@ set( {
 mouse_coordinate_x = Window.mouse_x
 mouse_coordinate_y = Window.mouse_y
 
-
 Image.new(
-    "./resources/images/SlateSliders.png",
+  './resources/images/slate_sliders.png',
     x: 150, y: 0,
     width: 300, height: 300,
 )
 
 Image.new(
-    "./resources/images/play_button.png",
+  './resources/images/play_button.png',
     x: 200, y: 350,
     width: 200, height: 100,
 )
@@ -35,39 +36,23 @@ on :mouse_down do
         Window.clear
         puts "game started = #{@game_started}"
         set( { 
-        :background => 'green',
+        :background => '#0E1619',
     } )
+    end
 
-
-    music = Music.new('./resources/music/Kid_Icarus_Uprising_Black_Feathers_in_the_Sky_OC_ReMix.mp3')
+    music = Music.new('./resources/music/game_music.mp3')
     music.play
     music.volume = 30
 
-    slate_sliders.start_screen
-    puts
-    puts "** Startup Game Board **\n\n"
-    pp slate_sliders.startup_game_board
-    puts
-    puts "** Print Game Board **\n\n"
-    slate_sliders.print_game_board
-    puts
-    puts "** Inner Game Board **\n\n"
-    #pp slate_sliders.inner_game_board
-
-    # puts
-    # puts "** SOLUTION BOARD **\n\n"
-
-    #slate_sliders.timer
-
     tick = 0
 
-    slate_sliders.inner_game_board
+    # slate_sliders.inner_game_board
 
 
     update do
     if tick % 60 == 0
         slate_sliders.print_game_board
-        slate_sliders.target_game_board
+        solution_board.target_game_board
     end
     tick += 1
     end
@@ -81,12 +66,6 @@ on :mouse_down do
       end
     end
 
-
-    puts
-    puts "** Current Position Of Blank Slate **\n\n"
-    # pp slate_sliders.blank_slate_position
-    end
 end
 show
 
-#&& slate_sliders.is_move_valid?('up')

@@ -6,18 +6,21 @@ class Board
   def initialize
     @side_length = 5
     @board = startup_game_board
-    @solution_board = solution_board
+    # generate_solution_board
     @shapes = []
     @target_shapes = []
   end
 
   def startup_game_board
     @board = Array.new(@side_length)
+    # @solution_board = Array.new(@side_length)
 
     @side_length.times do |column_index|
       @board[column_index] = Array.new(@side_length)
+      # @solution_board[column_index] = Array.new(@side_length)
       @side_length.times do |row_index|
         @board[column_index][row_index] = Slates.new(column_index, row_index)
+        # @solution_board[column_index][row_index] = Slates.new(column_index, row_index)
       end
     end
 
@@ -73,11 +76,11 @@ class Board
       x: 500,
       y: 0,
       size: 80 ,
-      color: 'black',
+      color: '#0E1619',
       z: 0
     )
     output = "      0      1      2      3      4"
-    @inner_slates.each.with_index do |row, index|
+    inner_game_board.each.with_index do |row, index|
       output += "\n #{index} "
       row.each do |slate|
         Square.new(
@@ -93,20 +96,20 @@ class Board
   end
 
 
-  def make_move(move)
+  def make_move(move, board_to_update=@board)
     blank_x, blank_y = blank_slate_position
 
     case move
-    when "up"
-      @board[blank_x][blank_y], @board[blank_x][blank_y + 1] = @board[blank_x][blank_y + 1], @board[blank_x][blank_y]
-    when "down"
-      @board[blank_x][blank_y], @board[blank_x][blank_y - 1] = @board[blank_x][blank_y - 1], @board[blank_x][blank_y]
-    when "left"
-      @board[blank_x][blank_y], @board[blank_x + 1][blank_y] = @board[blank_x + 1][blank_y], @board[blank_x][blank_y]
-    when "right"
-      @board[blank_x][blank_y], @board[blank_x - 1][blank_y] = @board[blank_x - 1][blank_y], @board[blank_x][blank_y]
+    when 'up'
+     board_to_update[ blank_x][blank_y],board_to_update[blank_x][blank_y + 1] =board_to_update[blank_x][blank_y + 1],board_to_update[blank_x][blank_y]
+    when 'down'
+     board_to_update[blank_x][blank_y],board_to_update[blank_x][blank_y - 1] =board_to_update[blank_x][blank_y - 1],board_to_update[blank_x][blank_y]
+    when 'left'
+     board_to_update[blank_x][blank_y],board_to_update[blank_x + 1][blank_y] =board_to_update[blank_x + 1][blank_y],board_to_update[blank_x][blank_y]
+    when 'right'
+     board_to_update[blank_x][blank_y],board_to_update[blank_x - 1][blank_y] =board_to_update[blank_x - 1][blank_y],board_to_update[blank_x][blank_y]
     else
-      raise "Invalid Move!"
+      raise 'Invalid Move!'
     end
 
     reassign_slate_coordinates
@@ -124,27 +127,48 @@ class Board
   def blank_slate_position
     @blank_slate_position = @board.each do |row|
       row.each do |slate|
-        if slate.colour == "#0E1619"
+        if slate.colour == '#0E1619'
           return [slate.x, slate.y]
         end
       end
     end
   end
 
-  def solution_board
-    @solution_board
+  def generate_solution_board
+
+    possible_moves = %w[up down left right]
+
+    x = 10
+    while x >= 0 do
+      random_move = possible_moves.sample
+      self.make_move(random_move) if self.is_move_valid?(random_move)
+      x -= 1
+    end
+
+    loop do
+      break if blank_slate_on_edge?
+      random_move = possible_moves.sample
+      self.make_move(random_move) if self.is_move_valid?(random_move)
+    end
+
+  end
+
+  def blank_slate_on_edge?
+    blank_x, blank_y = blank_slate_position
+
+    return blank_x == 0 || blank_x == 4 || blank_y == 0 || blank_y == 4
   end
 
   def is_move_valid?(move)
     blank_x, blank_y = blank_slate_position
 
-    if move == "up" && (blank_y != @side_length - 1)
+    if move == 'up' && (blank_y != @side_length - 1)
       true
-    elsif move == "down" && (blank_y != 0)
+    elsif move == 'down' && (blank_y != 0)
       true
-    elsif  move == "left" && (blank_x != @side_length - 1)
+    elsif  move == 'left' && (blank_x != @side_length - 1)
       true
-    elsif  move == "right" && (blank_x != 0)
+    elsif  move == 'right' && (blank_x != 0)
       true
     else
       false

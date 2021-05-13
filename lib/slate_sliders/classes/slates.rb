@@ -12,14 +12,14 @@ class Slates
 
   def get_startup_colour
     if @y <= 1
-      return row_colours(@x,"#EE6055", "#60D394", "#AAF683")
+      return row_colours(@x,'#EE6055', '#60D394', '#AAF683')
     elsif @y == 2
-      return row_colours(@x,"white", "#0E1619", "white")
+      return row_colours(@x,'white', '#0E1619', 'white')
     elsif @y >= 3
-      return row_colours(@x,"#FF9B85", "#60D394", "#FFD97D")
+      return row_colours(@x,'#FF9B85', '#60D394', '#FFD97D')
     end
 
-    raise "Invalid Index!"
+    raise 'Invalid Index!'
   end
 
   def row_colours(x_pos, colour1, colour2, colour3)
