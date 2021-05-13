@@ -13,14 +13,11 @@ class Board
 
   def startup_game_board
     @board = Array.new(@side_length)
-    # @solution_board = Array.new(@side_length)
 
     @side_length.times do |column_index|
       @board[column_index] = Array.new(@side_length)
-      # @solution_board[column_index] = Array.new(@side_length)
       @side_length.times do |row_index|
         @board[column_index][row_index] = Slates.new(column_index, row_index)
-        # @solution_board[column_index][row_index] = Slates.new(column_index, row_index)
       end
     end
 
@@ -132,6 +129,17 @@ class Board
         end
       end
     end
+  end
+
+  def same_inner_board?(other_board)
+    inner_game_board.each.with_index do |row, i|
+      row.each.with_index do |slate, j|
+        if slate.colour == other_board.inner_game_board[i][j].colour
+          return false
+        end
+      end
+    end
+    return true
   end
 
   def generate_solution_board
