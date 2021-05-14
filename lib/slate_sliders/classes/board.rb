@@ -23,38 +23,6 @@ class Board
     @board
   end
 
-  def print_game_board
-    @shapes.each do |shape|
-      shape.remove 
-    end
-
-    @shapes = []
-
-    Square.new(
-      x: 5, y: 200,
-      size: 405,
-      color: '#0E1619',
-      z: 0
-    )
-    Square.new(
-      x: 85, y: 275,
-      size: 245,
-      color: 'blue',
-      z: 1
-    )
-
-    @board.each.with_index do |row, index|
-      row.each do |slate|
-        @shapes << Square.new(
-          x: 10 + (slate.x_pos * 80), y: 200 + (slate.y_pos * 80),
-          z: 2,
-          size: 75,
-          color: slate.colour
-        )
-      end
-    end
-  end
-
   def inner_game_board
     # Remove outer edges of the tiles
     # Remove anything where y = 0, x = 0, y = 4, x = 4
@@ -64,7 +32,7 @@ class Board
     end.reject(&:empty?)
   end
   
-  def target_game_board
+  def target_pattern
     @target_shapes.each do |shape|
       shape.remove 
     end
@@ -90,6 +58,38 @@ class Board
     end
   end
 
+  def print_game_board
+    @shapes.each do |shape|
+      shape.remove
+    end
+
+    @shapes = []
+
+    Square.new(
+      x: 5, y: 200,
+      size: 405,
+      color: '#0E1619',
+      z: 0
+    )
+    Square.new(
+      x: 85, y: 275,
+      size: 245,
+      color: '#F7F7F7',
+      z: 1
+    )
+
+    @board.each.with_index do |row, index|
+      row.each do |slate|
+        @shapes << Square.new(
+          x: 10 + (slate.x_pos * 80), y: 200 + (slate.y_pos * 80),
+          z: 2,
+          size: 75,
+          color: slate.colour
+        )
+      end
+    end
+  end
+
   def make_move(move)
     blank_x, blank_y = blank_slate_position
 
@@ -108,7 +108,23 @@ class Board
 
     reassign_slate_coordinates
   end
-  
+
+  def is_move_valid?(move)
+    blank_x, blank_y = blank_slate_position
+
+    if move == 'down' && (blank_y != @side_length - 1)
+      true
+    elsif move == 'up' && (blank_y != 0)
+      true
+    elsif  move == 'right' && (blank_x != @side_length - 1)
+      true
+    elsif  move == 'left' && (blank_x != 0)
+      true
+    else
+      false
+    end
+  end
+
   def reassign_slate_coordinates
     @board.each.with_index do |column, column_index|
       column.each.with_index do |slate, row_index|
@@ -128,16 +144,10 @@ class Board
     end
   end
 
-  def same_inner_board?(other_board)
-    inner_game_board.each.with_index do |row, i|
-      row.each.with_index do |slate, j|
-        if slate.colour != other_board.inner_game_board[i][j].colour
-          return false
-        end
-      end
-    end
+  def blank_slate_on_edge?
+    blank_x, blank_y = blank_slate_position
 
-    true
+    blank_x == 0 || blank_x == 4 || blank_y == 0 || blank_y == 4
   end
 
   def generate_solution_board
@@ -157,28 +167,18 @@ class Board
     end
   end
 
-  def blank_slate_on_edge?
-    blank_x, blank_y = blank_slate_position
-
-    blank_x == 0 || blank_x == 4 || blank_y == 0 || blank_y == 4
-  end
-
-  def is_move_valid?(move)
-    blank_x, blank_y = blank_slate_position
-
-    if move == 'down' && (blank_y != @side_length - 1)
-      true
-    elsif move == 'up' && (blank_y != 0)
-      true
-    elsif  move == 'right' && (blank_x != @side_length - 1)
-      true
-    elsif  move == 'left' && (blank_x != 0)
-      true
-    else
-      false
+  def same_inner_board?(other_board)
+    inner_game_board.each.with_index do |row, i|
+      row.each.with_index do |slate, j|
+        if slate.colour != other_board.inner_game_board[i][j].colour
+          return false
+        end
+      end
     end
+
+    true
   end
-  
+
   def timer
     max_time_min = 2 # time in minutes
     max_time_sec = Time.now + max_time_min.to_i*60

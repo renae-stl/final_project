@@ -16,7 +16,13 @@ A sliding pattern matching game coded in Ruby.  Using the Ruby 2d library.
 
 <div align="center">
 
-![](resources/github/screenshots.png)
+![](resources/github/slate_sliders_home_screen.png)
+
+</div>
+
+<div align="center">
+
+![](resources/github/slate_sliders_game_screen.png)
 
 </div>
 

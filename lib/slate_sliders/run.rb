@@ -42,21 +42,22 @@ on :mouse_down do
         update do
             if tick % 60 == 0
                 slate_sliders.print_game_board
-                solution_board.target_game_board
+                solution_board.target_pattern
             end
 
             tick += 1
         end
 
         Image.new(
-          './resources/images/play_button.png',
-          x: 420, y: 400,
+          './resources/images/slate_sliders.png',
+          x: 218, y: 18,
           width: 150, height: 75,
           z: 3
         )
+
         Image.new(
-          './resources/images/close-button.png',
-          x: 450, y: 500,
+          './resources/images/close_button.png',
+          x: 10, y: 13,
           width: 75, height: 75,
           z: 3
         )
@@ -78,7 +79,7 @@ on :mouse_down do
                 end
 
                 on :mouse_down do
-                    if Window.mouse_x.between?(450, 525) && Window.mouse_y.between?(500, 575)
+                    if Window.mouse_x.between?(10, 12) && Window.mouse_y.between?(13, 15)
                         Window.close
                     end
                 end
