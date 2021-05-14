@@ -8,15 +8,16 @@ class Slates
     @y_pos = y_pos
     @colour = get_startup_colour
     @selected_slate = false
+    @selectable_slate = false
   end
 
   def get_startup_colour
     if @y_pos <= 1
-      return row_colours(@x_pos, '#EE6055', '#60D394', '#AAF683')
+      return row_colours(@x_pos, '#FEC4C8', '#FE5685', '#FED055')
     elsif @y_pos == 2
       return row_colours(@x_pos, 'white', '#0E1619', 'white')
     elsif @y_pos >= 3
-      return row_colours(@x_pos, '#FF9B85', '#60D394', '#FFD97D')
+      return row_colours(@x_pos, '#FEB25D', '#FE5685', '#6AC8E6')
     end
 
     raise 'Invalid Index!'
@@ -38,6 +39,10 @@ class Slates
   
   def unselect
     @selected_slate = false
+  end
+
+  def blank?
+    @colour = '#0E1619'
   end
 
 end

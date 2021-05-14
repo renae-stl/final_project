@@ -297,3 +297,21 @@ puts "** Current Position Of Blank Slate **\n\n"
 def to_string
     "[ #{@colour.slice(0,4)} ]"
 end
+
+///////////////////////////////////////////////////////////
+
+# if @y_pos <= 1
+#   return row_colours(@x_pos, '#65A562', '#16AFB6', '#E8CD2B')
+# elsif @y_pos == 2
+#   return row_colours(@x_pos, 'white', '#0E1619', 'white')
+# elsif @y_pos >= 3
+#   return row_colours(@x_pos, '#EF8931', '#16AFB6', '#ED5C5C')
+# end
+
+# if @y_pos <= 1
+#   return row_colours(@x_pos, '#ECD8D8', '#EDA2B7', '#F5DBA0')
+# elsif @y_pos == 2
+#   return row_colours(@x_pos, 'white', '#0E1619', 'white')
+# elsif @y_pos >= 3
+#   return row_colours(@x_pos, '#81D2CD', '#EDA2B7', '#90C1D9')
+# end

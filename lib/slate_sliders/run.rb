@@ -9,6 +9,7 @@ solution_board = Board.new
 solution_board.generate_solution_board
 
 # Window display settings
+
 set title: 'Slate Sliders!',
     width: 600,
     height: 600,
@@ -20,13 +21,13 @@ Window.mouse_y
 Image.new(
   './resources/images/slate_sliders.png',
   x: 150, y: 0,
-  width: 300, height: 300,
+  width: 300, height: 300
 )
 
 Image.new(
   './resources/images/play_button.png',
   x: 200, y: 350,
-  width: 200, height: 100,
+  width: 200, height: 100
 )
 
 on :mouse_down do
@@ -48,6 +49,19 @@ on :mouse_down do
             tick += 1
         end
 
+        Image.new(
+          './resources/images/play_button.png',
+          x: 420, y: 400,
+          width: 150, height: 75,
+          z: 3
+        )
+        Image.new(
+          './resources/images/close-button.png',
+          x: 450, y: 500,
+          width: 75, height: 75,
+          z: 3
+        )
+
         on :key_down do |event|
             if event.key == 'up' || event.key == 'down' ||
                 event.key == 'left' || event.key == 'right'
@@ -62,19 +76,8 @@ on :mouse_down do
                       width: 350, height: 300,
                       z: 3
                     )
-                    Image.new(
-                      './resources/images/play_button.png',
-                      x: 420, y: 400,
-                      width: 150, height: 75,
-                      z: 3
-                    )
-                    Image.new(
-                      './resources/images/close-button.png',
-                      x: 450, y: 500,
-                      width: 75, height: 75,
-                      z: 3
-                    )
                 end
+
                 on :mouse_down do
                     if Window.mouse_x.between?(450, 525) && Window.mouse_y.between?(500, 575)
                         Window.close
