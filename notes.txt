@@ -19,7 +19,7 @@ Slate! Sliders Notes
 
 ///////////////////////////////////////////////////////////
 
-# MVP ENGINE EPICS v1.0 (IRB Version)
+# MVP Engine Epics v1.0 (IRB Version)
 
 - I can generate a target pattern
 - I can select a slate and move it to another position
@@ -35,15 +35,16 @@ Slate! Sliders Notes
 - [x] Create 5x5 startup board
 - [x] Create target pattern
 - [x] Print board
-- [ ] Game movement
-- [ ] Timer
+- [x] Game movement
+- [x] Timer
     - [ ] Timer Slider
 - [ ] Ruby 2d
-    - [ ]
+    - [x] Open window
+    - [x] Move slates
+    - [x] Display images
+    - [x] Display start button and exit button
 - [ ] Testing
-    - [ ]
-    - [ ]
-    - [ ]
+    - [x] Window test
 
 ///////////////////////////////////////////////////////////
 
@@ -76,7 +77,7 @@ Slate! Sliders Notes
 # 3. To represent the target pattern (constant).
 # Once the current game state equals the target pattern then the player has won.
 
-# Methods We May Need
+# Methods we may need
 
 # target_pattern (which is the puzzle to solve)
 # start_up_board_pattern
@@ -118,176 +119,3 @@ Slate! Sliders Notes
 #   [4,2,0,4,6]
 #   [1,4,6,5,4]
 #   [4,3,4,1,4]
-
-
-***********************************************************
-///////////////////////////////////////////////////////////
-
-# Old Code Snippets
-
-///////////////////////////////////////////////////////////
-***********************************************************
-
-board = [
-  [rand(1..6),rand(1..6),rand(1..6),rand(1..6),rand(1..6)],
-  [rand(1..6),rand(1..6),rand(1..6),rand(1..6),rand(1..6)],
-  [rand(1..6),rand(1..6),0,rand(1..6),rand(1..6)],
-  [rand(1..6),rand(1..6),rand(1..6),rand(1..6),rand(1..6)],
-  [rand(1..6),rand(1..6),rand(1..6),rand(1..6),rand(1..6)]
-]
-
-///////////////////////////////////////////////////////////
-
-# puts "\n\nStartup Inner Slates\n\n"
-# pp slate_sliders.startup_inner_slates
-# puts "\n\nTarget Pattern\n\n"
-
-///////////////////////////////////////////////////////////
-
-# print_board_size = @size + 1
-#
-# @board = Array.new(print_board_size)
-# print_board_size.times do |column_index|
-#   @board[column_index] = Array.new(print_board_size)
-#   print_board_size.times do |row_index|
-#     @board[column_index][row_index] = Slates.new(row_index, column_index).colour
-#   end
-# end
-# @board
-# (0..4).each { |column_index|
-#   print "outer:"
-#   (0..4).each { |row_index|
-#     "inner: #{@board[column_index][row_index]} [#{row_index}] "
-#   }
-#   puts "\n"
-# }
-for row_index,column_index in 0..4
-  puts @board[0][0].colour
-  puts " #{column_index} #{row_index} "
-end
-
-///////////////////////////////////////////////////////////
-
-# pp @print_board
-# @board.each_with_index do |column_index, row_index|
-#   #column_index.each { |object| puts " #{row_index} [ #{object.instance_variable_get(:@colour).slice(0..2)} ] " }
-# end
-
-///////////////////////////////////////////////////////////
-
-puts
-puts "** Print Startup Inner Slates **\n\n"
-slate_sliders.print_inner_board(slate_sliders.startup_inner_slates)
-
-  def startup_inner_slates
-    slate = @print_board_2d
-
-    @startup_inner_slates =  [[slate[1][1], slate[1][2], slate[1][3]],
-                              [slate[2][1], slate[2][2], slate[2][3]],
-                              [slate[3][1], slate[3][2], slate[3][3]],
-    ]
-  end
-
-///////////////////////////////////////////////////////////
-
-m = ARGV[0] || 2 # time in minutes
-e = Time.now + m.to_i*60
-
-while Time.now <= e
-sleep 1
-
-t = e - Time.now
-min, sec = t/60, t%60
-print "\b"*5
-printf "%02d:%02d", min, sec if t > 0
-end
-
-///////////////////////////////////////////////////////////
-
-# Speed Tiles Colour Scheme
-# "red", "yellow", "blue"
-# "white", "black", "white"
-# "orange", "yellow", "green"
-
-///////////////////////////////////////////////////////////
-
-# def start_screen
-#   puts
-#   puts "-" * 16
-#   puts ' Slate! Sliders '
-#   puts "-" * 16
-#   puts
-#   puts '@ 2021 Team Earth'
-#   puts
-#   end
-
-///////////////////////////////////////////////////////////
-
-slate_sliders.start_screen
-puts
-puts "** Startup Game Board **\n\n"
-pp slate_sliders.startup_game_board
-puts
-puts "** Print Game Board **\n\n"
-slate_sliders.print_game_board
-puts
-puts "** Inner Game Board **\n\n"
-#pp slate_sliders.inner_game_board
-puts
-# puts
-# puts "** SOLUTION BOARD **\n\n"
-puts
-#slate_sliders.timer
-puts
-puts "** Current Position Of Blank Slate **\n\n"
-# pp slate_sliders.blank_slate_position
-
-///////////////////////////////////////////////////////////
-
-# def current_game_board
-#   output = "      0      1      2      3      4"
-#   @inner_slates.shuffle.each.with_index do |row, index|
-#     output += "\n #{index} "
-#     row.each do |slate|
-#       Square.new(
-#         z: 2,
-#         x: 100 + (slate.x * 100),
-#         y: 100 + (slate.y * 100),
-#         width: 25,
-#         height: 25,
-#         color: slate.colour
-#       )
-#       output += slate.to_string
-#     end
-#   end
-# end
-
-///////////////////////////////////////////////////////////
-
-# if event.key == 's'
-#   slate_sliders.make_move('up')
-#   clear
-#   #slate_sliders.inner_game_board
-#   slate_sliders.print_game_board
-# end
-#
-# if event.key == 'w'
-#     slate_sliders.make_move('down')
-#     clear
-#     #slate_sliders.inner_game_board
-#     slate_sliders.print_game_board
-# end
-#
-# if event.key == 'd'
-#     slate_sliders.make_move('left')
-#     clear
-#     #slate_sliders.inner_game_board
-#     slate_sliders.print_game_board
-# end
-#
-# if event.key == 'a'
-#     slate_sliders.make_move('right')
-#     clear
-#     #slate_sliders.inner_game_board
-#     slate_sliders.print_game_board
-# end
