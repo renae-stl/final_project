@@ -29,7 +29,7 @@ A sliding pattern matching game coded in Ruby.  Using the Ruby 2d library.
 
 **To install it, run**
 
-* <span class="code-commands">$ Bundle install</span>
+* <span class="code-commands">$ bundle install</span>
 
 ## Starting the game
 
