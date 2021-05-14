@@ -24,20 +24,20 @@ A sliding pattern matching game coded in Ruby.  Using the Ruby 2d library.
 
 **Before installing, make sure you have:**
 
-* Ruby installed...
-* Library dependencies...
+* Ruby installed.
+* Library dependencies: Ruby 2D
 
 **To install it, run**
 
-* <span class="code-commands">$ gem ****</span>
+* <span class="code-commands">$ Bundle install</span>
 
 ## Starting the game
 
-**Running in 800x600 window mode**
+**Running in 600x600 window mode**
 
-* <span class="code-commands">$ ruby speed_slates</span>
+* <span class="code-commands">$ ruby lib/slate_sliders/run.rb</span>
 
 ## Controls
 
-* Movement - Mouse clicks or arrow keys
-* End - (q)
+* The `arrows keys` moves your slate.
+* Click the `window close button` to quit the game.

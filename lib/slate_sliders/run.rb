@@ -2,7 +2,6 @@
 require 'ruby2d'
 require_relative 'classes/board'
 require_relative 'classes/slates'
-require_relative 'classes/game'
 
 slate_sliders = Board.new
 solution_board = Board.new
