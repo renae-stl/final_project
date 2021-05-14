@@ -51,7 +51,7 @@ on :mouse_down do
         Image.new(
           './resources/images/slate_sliders.png',
           x: 218, y: 18,
-          width: 150, height: 75,
+          width: 150, height: 100,
           z: 3
         )
 
@@ -75,16 +75,14 @@ on :mouse_down do
                       x: 150, y: 5,
                       width: 350, height: 300,
                       z: 3
-                    )
-                end
-
-                on :mouse_down do
-                    if Window.mouse_x.between?(10, 12) && Window.mouse_y.between?(13, 15)
-                        Window.close
-                    end
+                    )                    
                 end
             end
         end
+    end
+
+    if Window.mouse_x.between?(10, 85) && Window.mouse_y.between?(13, 88)
+        Window.close
     end
 end
 
