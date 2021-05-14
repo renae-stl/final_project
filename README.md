@@ -46,4 +46,4 @@ A sliding pattern matching game coded in Ruby.  Using the Ruby 2d library.
 ## Controls
 
 * The `arrows keys` move your slate.
-* Click the `window close button` to quit the game.
+* Click the `close button` to quit the game.
